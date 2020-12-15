@@ -6,7 +6,6 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-//例如：import Model1 from "../../components/common/model1";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -22,9 +21,11 @@ export default {
   methods: {
     getPopularSongList() {
       //热门歌单分类
-      this.$axios.get("api/artist/list?type=-1&area=7").then((res) => {
-        console.log(res);
-      });
+      this.$axios
+        .get("api/login/cellphone?phone=17621047461&password=jiaziyang123")
+        .then((res) => {
+          console.log(res);
+        });
     },
     // getSongList() {
     //   //歌单分类
