@@ -25,12 +25,15 @@
       <li><i class="iconfont icon-guangbo"></i><span>我的博客</span></li>
       <li><i class="iconfont icon-qita"></i><span>音乐应用</span></li>
     </ul>
+    <div class="nav-box loginOut" v-if="!userId">
+      <p>用户还未登录，请登录后查看歌单</p>
+    </div>
     <!-- 歌单列表 -->
     <ul class="lists-cover" v-if="userId">
       <div class="lists-header">
         <span class="lists-count">我的歌单{{ Lists.length }}个</span>
-        <i class="iconfont icon-jia"></i>
         <i class="iconfont icon-gengduo"></i>
+        <i class="iconfont icon-jia" @click="showPopup"></i>
       </div>
       <li class="lists" v-for="(item, index) in Lists" :key="item.ListId">
         <img :src="item.ListImg" alt="" class="lists-img" />
@@ -48,7 +51,40 @@
         cancel-text="取消"
         close-on-click-action
       />
+      <van-popup
+        v-model="show1"
+        closeable
+        @close="onClose"
+        close-icon="close"
+        position="bottom"
+        :style="{ height: '30%' }"
+      >
+        <van-form style="margin-top: 30px">
+          <van-field
+            autocomplete="off"
+            v-model="ListName"
+            name="歌单名"
+            label="歌单名"
+            placeholder="请输入歌单名"
+            :rules="[{ required: true, message: '请填写歌单名' }]"
+          />
+          <div style="margin: 16px">
+            <van-button
+              round
+              block
+              type="info"
+              :disabled="this.ListName ? false : true"
+              @click="addList"
+            >
+              新建歌单
+            </van-button>
+          </div>
+        </van-form>
+      </van-popup>
     </ul>
+    <van-button type="danger" v-if="userId" @click="loginOut" class="login"
+      >退出登录</van-button
+    >
   </div>
 </template>
 
@@ -73,8 +109,11 @@ export default {
       level: "", //用户等级
       Lists: [], //用于存储用户歌单的信息
       show: false,
+      show1: false,
       actions: [{ name: "删除" }],
       delIndex: "", //要删除歌单的index
+      ListName: "", //新建的歌单名字
+      fileList: [], //新建的歌单图片
     };
   },
   //监听属性 类似于data概念
@@ -83,13 +122,62 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    loginOut() {
+      //退出登录
+      Dialog.confirm({
+        message: "是否退出当前账号？",
+      })
+        .then(() => {
+          //点击确定
+          localStorage.removeItem("userId");
+          localStorage.removeItem("cookie");
+          Toast.success({
+            message: "您已成功退出登录！",
+            duration: 2000,
+          });
+          this.$router.push("/login");
+        })
+        .catch(() => {
+          //点击取消
+          // on cancel
+        });
+    },
+    addList() {
+      //新建歌单
+      let newList = {
+        ListName: this.ListName,
+        ListNum: 0,
+        ListImg:
+          "https://p2.music.126.net/6LnmjDqcMTyW5ntqtAH0kg==/109951164332860622.jpg",
+      };
+      this.Lists.push(newList);
+      Toast.success({
+        message: "歌单创建成功!",
+        duration: 2000,
+      });
+      this.show1 = false;
+    },
+    onClose() {
+      this.ListName = "";
+    },
+    showPopup() {
+      this.show1 = true;
+    },
     goMusicList(id) {
+<<<<<<< HEAD
+=======
+      //跳转到歌单详情页
+>>>>>>> fc5291a87516fa105f50a7a4eafbaaed4e33c8e0
       this.$router.push({
         path: "/musiclist",
         query: {
           id,
         },
       });
+<<<<<<< HEAD
+=======
+      console.log(id);
+>>>>>>> fc5291a87516fa105f50a7a4eafbaaed4e33c8e0
     },
     delList(index) {
       //数据赋值
@@ -108,6 +196,7 @@ export default {
         message: "删除后无法撤回，是否删除？",
       })
         .then(() => {
+          //点击确定
           this.Lists.splice(this.delIndex, 1);
           Toast.success({
             message: "删除成功！",
@@ -115,6 +204,7 @@ export default {
           });
         })
         .catch(() => {
+          //点击取消
           // on cancel
         });
     },
@@ -162,6 +252,7 @@ export default {
       });
     },
     goLogin() {
+      //跳转至登录页
       this.$router.push("/login");
     },
   },
@@ -289,5 +380,22 @@ export default {
 .lists .icon-gengduo {
   float: right;
   font-size: 22px;
+}
+.lists-header {
+  padding-right: 27px;
+}
+.lists-header .icon-gengduo {
+  float: right;
+  font-size: 22px;
+}
+.lists-header .icon-jia {
+  float: right;
+  font-size: 16px;
+  margin-top: 4px;
+  margin-right: 10px;
+}
+.loginOut {
+  text-align: center;
+  padding-top: 30px;
 }
 </style>

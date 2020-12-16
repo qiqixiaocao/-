@@ -7,6 +7,9 @@ const router = new VueRouter({
     routes: [{
             path: "/",
             redirect: "/index",
+            meta: {
+                showFooter: true
+            }
         },
         {
             //首页（发现页）
@@ -39,7 +42,20 @@ const router = new VueRouter({
             //歌手列表
             path: "/singer",
             component: () =>
+<<<<<<< HEAD
                 import ("../views/Singer"),
+=======
+                import ("../views/Singer/index"),
+            meta: {
+                showFooter: true,
+            },
+        },
+        {
+            //歌手列表
+            path: "/details",
+            component: () =>
+                import ("../views/Singer/details"),
+>>>>>>> fc5291a87516fa105f50a7a4eafbaaed4e33c8e0
             meta: {
                 showFooter: true,
             },
@@ -58,6 +74,7 @@ const router = new VueRouter({
             path: "/musiclist",
             component: () =>
                 import ("../views/MusicList"),
+<<<<<<< HEAD
             meta: {
                 showFooter: false,
             },
@@ -67,6 +84,8 @@ const router = new VueRouter({
             path: "/musicplayer/:id",
             component: () =>
                 import ("../views/MusicPlayer"),
+=======
+>>>>>>> fc5291a87516fa105f50a7a4eafbaaed4e33c8e0
             meta: {
                 showFooter: false,
             },
