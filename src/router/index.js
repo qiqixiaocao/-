@@ -50,7 +50,7 @@ const router = new VueRouter({
         },
         {
             //歌单
-            path: "/musiclist/:id",
+            path: "/musiclist",
             component: () => import("../views/MusicList"),
             meta: {
                 showFooter: false,

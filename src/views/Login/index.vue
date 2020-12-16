@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="login" style="margin-top:50px">
+  <div class="login" style="margin-top: 50px">
     登录
 
     <van-cell-group>
@@ -19,12 +19,7 @@
         v-model="tel"
       />
       <van-field v-model="password" type="password" label="密码" />
-      <van-field
-        center
-        clearable
-        label="短信验证码"
-        placeholder="请输入短信验证码"
-      >
+      <van-field center clearable label="短信验证码" placeholder="请输入短信验证码">
         <template #button>
           <van-button size="small" type="primary">发送验证码</van-button>
         </template>
@@ -93,7 +88,7 @@ export default {
           if (res.data.code == 502) {
             Toast("请输入正确的密码");
           } else {
-            this.$router.push("/index.vue");
+            this.$router.push("/index");
           }
 
           window.localStorage.setItem("userId", res.data.profile.userId);
