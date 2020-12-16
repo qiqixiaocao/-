@@ -1,6 +1,38 @@
 <!--  -->
 <template>
-  <div class="mine">我的</div>
+  <div class="mine">
+    <van-nav-bar style="padding:none">
+      <template #left>
+        <van-icon
+          class="iconfont"
+          class-prefix="icon"
+          name="gengduo1"
+          style="border-bootom:0"
+        />
+      </template>
+    </van-nav-bar>
+    <div style="height:104px;">
+      <van-card
+        style="float:left;width:85%;border:none"
+        title="神秘糖果店老板娘 "
+        thumb="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=10859372,2077425287&fm=26&gp=0.jpg"
+      >
+        <template #bottom>
+          <van-tag plain type="danger">云音乐VIP 续费></van-tag>
+          &nbsp;
+          <van-tag plain type="danger">Lv.8</van-tag>
+        </template>
+      </van-card>
+      <van-nav-bar
+        right-arrow
+        style="float:left;width:15%;height:100%;background:#fafafa;"
+      >
+        <template #right>
+          <van-icon name="arrow" size="18" />
+        </template>
+      </van-nav-bar>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -33,6 +65,14 @@ export default {
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang='scss' scoped>
+
+<style lang="scss" scoped>
 //@import url(); 引入公共css类
+
+// @font-weight-bold:800;
+
+.van-nav-bar__right {
+  line-height: 104px;
+  text-align: center;
+}
 </style>

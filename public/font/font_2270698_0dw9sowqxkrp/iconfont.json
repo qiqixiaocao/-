@@ -1,0 +1,16 @@
+{
+  "id": "2270698",
+  "name": "musicCloud",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6636113",
+      "name": "三横",
+      "font_class": "sanheng",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}
