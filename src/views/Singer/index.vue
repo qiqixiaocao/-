@@ -2,7 +2,7 @@
 <template>
   <div class="singer">
     <div class="city_body">
-      <div class="city_list" style="padding-bottom:40px">
+      <div class="city_list" style="padding-bottom: 40px">
         <mt-index-list>
           <mt-index-section
             :index="items.title"
@@ -46,7 +46,8 @@ export default {
           //定义一个map对象
         };
         list.forEach((item, index) => {
-          // console.log(item.picUrl);
+          // console.log(index);
+          index;
           var s = item.name.substr(0, 1);
           this.first = this.pinyin(s, {
             style: this.pinyin.STYLE_FIRST_LETTER,

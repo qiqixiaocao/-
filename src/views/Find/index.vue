@@ -20,30 +20,41 @@
         }"
       >
         云贝中心，创作者中心
-        <div style="background:#fff;height:30px">
-          <span class="custom-title" style="float:left;width:10%;">
+        <div style="background: #fff; height: 30px">
+          <span class="custom-title" style="float: left; width: 10%">
             <img
-              style="border-radius:50%;display: inline-block;width:80%"
+              style="border-radius: 50%; display: inline-block; width: 80%"
               src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=235780017,2460906050&fm=26&gp=0.jpg"
               alt=""
             />&nbsp;
           </span>
           <div
-            style="float:left;width:80%;height:30px;line-height:30px;margin-left:5px"
+            style="
+              float: left;
+              width: 80%;
+              height: 30px;
+              line-height: 30px;
+              margin-left: 5px;
+            "
           >
             <span
-              style="width:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+              style="
+                width: 15px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              "
               >神秘糖果店老板娘&nbsp;></span
             >
             <van-icon
               name="scan"
               class="search-icon"
-              style="font-size:20px;float:right"
+              style="font-size: 20px; float: right"
             />
           </div>
         </div>
 
-        <div style="background:#fff">
+        <div style="background: #fff">
           <van-nav-bar title="标题" left-text="我的消息" left-arrow>
             <template #right>
               <van-icon name="search" size="18" />
@@ -57,58 +68,80 @@
         shape="round"
         background="rgb(245, 245, 245)"
         placeholder="请输入搜索关键词"
-        style="float:left;width:88%"
+        style="float: left; width: 88%"
       />
       <van-icon
         class="iconfont"
         class-prefix="icon"
         name="luyin"
-        style="border-bootom:0;float:left;line-height:54px"
+        style="border-bootom: 0; float: left; line-height: 54px"
       />
     </div>
 
     <!-- 轮播图 -->
-    <van-swipe :autoplay="2000" style="height:100%;" :height="145">
+    <van-swipe :autoplay="2000" style="height: 100%" :height="145">
       <van-swipe-item v-for="(image, index) in images" :key="index">
-        <img :src="image.pic" style="margin:0 20px" />
+        <img :src="image.pic" style="margin: 0 20px" />
       </van-swipe-item>
     </van-swipe>
     <!-- 每日推荐图标 -->
-    <div style="display:flex;text-align:center;background:#fff;">
-      <dl style="width:15%;margin:10px" v-for="item in icons" :key="item.id">
-        <dt style="background:rgb(253,120,119);border-radius:50%;margin:10px 0">
-          <img :src="item.iconUrl" alt="" style="width:80%;height:80%" />
+    <div style="display: flex; text-align: center; background: #fff">
+      <dl style="width: 15%; margin: 10px" v-for="item in icons" :key="item.id">
+        <dt
+          style="
+            background: rgb(253, 120, 119);
+            border-radius: 50%;
+            margin: 10px 0;
+          "
+        >
+          <img :src="item.iconUrl" alt="" style="width: 80%; height: 80%" />
         </dt>
         <dt
           v-text="item.name"
-          style="font-size:14px;width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+          style="
+            font-size: 14px;
+            width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          "
         ></dt>
       </dl>
     </div>
 
-    <van-divider style="margin:0" />
+    <van-divider style="margin: 0" />
 
     <!-- 推荐歌单 -->
     <div class="recommed">
-      <div style="height:45px;margin:0 15px -10px 15px">
-        <h2 style="float:left;width:150px">推荐歌单</h2>
+      <div style="height: 45px; margin: 0 15px -10px 15px">
+        <h2 style="float: left; width: 150px">推荐歌单</h2>
         <van-button type="primary" to="index" class="more">更多 ></van-button>
       </div>
       <div
-        style="height:350px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+        style="
+          height: 350px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        "
       >
         <van-grid
           :gutter="5"
           icon-size="50px"
           column-num="3"
           :border="false"
-          style="padding:0;height:300px"
+          style="padding: 0; height: 300px"
         >
           <van-grid-item v-for="item in tuipics" :key="item.id">
             <van-image radius="15" :src="item.picUrl" />
             <p
               v-text="item.name"
-              style="width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+              style="
+                width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              "
             ></p>
           </van-grid-item>
         </van-grid>
@@ -118,28 +151,33 @@
     <!-- 私人定制  精选华语金曲 select-->
 
     <div
-      style="background-color: #fff;border-radius: 20px;padding:10px 0;margin:10px 0"
+      style="
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 10px 0;
+        margin: 10px 0;
+      "
     >
-      <p style="color:#aaa;margin:0 15px">私人定制</p>
-      <div style="height:45px;margin:0 15px">
-        <h2 style="float:left;width:250px">好听的华语歌曲精选</h2>
+      <p style="color: #aaa; margin: 0 15px">私人定制</p>
+      <div style="height: 45px; margin: 0 15px">
+        <h2 style="float: left; width: 250px">好听的华语歌曲精选</h2>
         <van-button type="primary" to="index" class="more">播放 ></van-button>
       </div>
-      <div style="margin:0 10px">
+      <div style="margin: 0 10px">
         <van-cell v-for="item in selforpic" :key="item.id">
           <!-- 使用 title 插槽来自定义标题 -->
           <template #title>
-            <span class="custom-title" style="float:left">
+            <span class="custom-title" style="float: left">
               <img :src="item.picUrl" alt="" />
             </span>
             <p>
-              <span style="font-size:18px" v-text="item.name"></span>
+              <span style="font-size: 18px" v-text="item.name"></span>
               <span
-                style="color:#aaa;margin:0 15px"
+                style="color: #aaa; margin: 0 15px"
                 v-text="item.song.album.artists[0].name"
               ></span>
             </p>
-            <p style="color:orange">超71%人播放</p>
+            <p style="color: orange">超71%人播放</p>
           </template>
         </van-cell>
       </div>
@@ -154,19 +192,29 @@
 
     <!-- 排行榜 -->
     <div
-      style="background-color: #fff;border-radius: 20px;padding:10px 0;margin:10px 0"
+      style="
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 10px 0;
+        margin: 10px 0;
+      "
     >
-      <div style="height:45px;margin:0 15px">
-        <h2 style="float:left;width:150px">排行榜</h2>
+      <div style="height: 45px; margin: 0 15px">
+        <h2 style="float: left; width: 150px">排行榜</h2>
         <van-button type="primary" to="index" class="more">更多 ></van-button>
       </div>
-      <div style="margin:0 12px;height:215px">
+      <div style="margin: 0 12px; height: 215px">
         <div
-          style="width:95%;padding:10px 0 0 12px;box-shadow:#ddd 0px 0px 1px 1px;border-radius:10px"
+          style="
+            width: 95%;
+            padding: 10px 0 0 12px;
+            box-shadow: #ddd 0px 0px 1px 1px;
+            border-radius: 10px;
+          "
         >
-          <h3 style="text-align:center;padding-bottom:8px">
+          <h3 style="text-align: center; padding-bottom: 8px">
             硬地原创音乐榜
-            <span style="color:#bbb;font-weight:400">></span>
+            <span style="color: #bbb; font-weight: 400">></span>
           </h3>
           <van-cell
             v-for="item in rowforpic"
@@ -175,16 +223,16 @@
           >
             <!-- 使用 title 插槽来自定义标题 -->
             <template #title>
-              <span class="custom-title" style="float:left">
+              <span class="custom-title" style="float: left">
                 <img :src="item.picUrl" alt="" />&nbsp;
               </span>
-              <p style="padding:15px 10px 0 0;">
-                <span style="font-size:18px" v-text="item.name"></span>
+              <p style="padding: 15px 10px 0 0">
+                <span style="font-size: 18px" v-text="item.name"></span>
                 <span
-                  style="color:#aaa;padding-left:10px"
+                  style="color: #aaa; padding-left: 10px"
                   v-text="item.song.album.artists[0].name"
                 ></span>
-                <span style="color:green;float:right">新</span>
+                <span style="color: green; float: right">新</span>
               </p>
             </template>
           </van-cell>
@@ -277,15 +325,12 @@ export default {
         }
       });
     },
-<<<<<<< HEAD
     getSongList() {
       //歌单分类
       this.$axios.get("api/playlist/catlist").then((res) => {
         console.log(res);
       });
     },
-=======
->>>>>>> fc5291a87516fa105f50a7a4eafbaaed4e33c8e0
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {

@@ -164,20 +164,14 @@ export default {
       this.show1 = true;
     },
     goMusicList(id) {
-<<<<<<< HEAD
-=======
       //跳转到歌单详情页
->>>>>>> fc5291a87516fa105f50a7a4eafbaaed4e33c8e0
       this.$router.push({
         path: "/musiclist",
         query: {
           id,
         },
       });
-<<<<<<< HEAD
-=======
-      console.log(id);
->>>>>>> fc5291a87516fa105f50a7a4eafbaaed4e33c8e0
+      // console.log(id);
     },
     delList(index) {
       //数据赋值

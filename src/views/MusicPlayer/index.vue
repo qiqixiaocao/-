@@ -37,15 +37,15 @@ export default {
       this.$router.go(-1);
     },
     onClickRight() {
-      wx.showToast({ title: "点击按钮", icon: "none" });
+      console.log("分享");
     },
     getmusicUrl() {
-      console.log(this.$route);
+      // console.log(this.$route);
       if (this.$route.query.id) {
         this.$axios
           .get("api/song/url?id=" + this.$route.query.id)
           .then((res) => {
-            console.log(res.data, "123");
+            // console.log(res.data, "123");
             this.audiourl = res.data.data[0].url;
             this.Songtitle = res.data.data[0];
             this.Songtitle = this.$route.query.songname;
@@ -53,12 +53,12 @@ export default {
         this.$axios
           .get("api/song/detail?ids=" + this.$route.query.id)
           .then((res) => {
-            console.log(res, "歌曲详情", res.data.songs[0].name);
+            res;
+            // console.log(res, "歌曲详情", res.data.songs[0].name);
           });
       }
-
       // song/detail
-      console.log(this.$route.query);
+      // console.log(this.$route.query);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）

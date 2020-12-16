@@ -20,7 +20,7 @@
           <van-col span="2">{{ index + 1 }}</van-col>
           <van-col span="20">
             <p>{{ item.name }}</p>
-            <p>{{ item.ar[0].name + "　" + item.al.name }}</p>
+            <p>{{ item.ar[0].name + "－－" + item.al.name }}</p>
           </van-col>
           <van-col span="2"
             ><span class="iconfont icon-gengduo"></span
@@ -54,7 +54,7 @@ export default {
   //方法集合
   methods: {
     Listen(id, num) {
-      console.log(id, num);
+      // console.log(id, num);
       this.$router.push({
         path: "/musicplayer",
         query: {
@@ -73,7 +73,7 @@ export default {
             // this.list = res.data.playlist.tracks;
             this.imageURL = res.data.playlist.coverImgUrl;
             this.desc = res.data.playlist.creator.nickname + "　>";
-            console.log(res.data.playlist);
+            // console.log(res.data.playlist);
             for (let i in res.data.playlist.trackIds) {
               this.$axios
                 .get("api/song/detail?ids=" + res.data.playlist.trackIds[i].id)
@@ -81,7 +81,7 @@ export default {
                   this.list.push(res.data.songs[0]);
                 });
             }
-            console.log(this.list);
+            // console.log(this.list);
           });
       }
     },
@@ -89,7 +89,7 @@ export default {
       this.$router.go(-1);
     },
     onClickRight() {
-      Toast({ title: "点击按钮", icon: "none" });
+      console.log("分享");
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
