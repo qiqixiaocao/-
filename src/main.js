@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import axios from 'axios'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import axios from 'axios';
 import Vant from 'vant';
 import MintUI from 'mint-ui'
 import pinyin from 'pinyin'
@@ -13,7 +13,7 @@ Vue.prototype.pinyin = pinyin
 Vue.use(Vant);
 Vue.use(MintUI)
 Vue.prototype.$axios = axios;
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
     router,

@@ -17,8 +17,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Find"),
             meta: {
-                showFooter: true
-            }
+                showFooter: true,
+            },
         },
         {
             //登录
@@ -26,8 +26,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Login"),
             meta: {
-                showFooter: false
-            }
+                showFooter: false,
+            },
         },
         {
             //注册
@@ -35,8 +35,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Userinfo"),
             meta: {
-                showFooter: false
-            }
+                showFooter: false,
+            },
         },
         {
             //歌手列表
@@ -44,17 +44,17 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Singer/index"),
             meta: {
-                showFooter: true
-            }
+                showFooter: true,
+            },
         },
         {
-            //歌手详情
+            //歌手列表
             path: "/details",
             component: () =>
                 import ("../views/Singer/details"),
             meta: {
-                showFooter: false
-            }
+                showFooter: true,
+            },
         },
         {
             //我的
@@ -62,8 +62,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Mine"),
             meta: {
-                showFooter: true
-            }
+                showFooter: true,
+            },
         },
         {
             //歌单
@@ -71,8 +71,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/MusicList"),
             meta: {
-                showFooter: false
-            }
+                showFooter: false,
+            },
         },
         {
             //歌曲播放
@@ -80,8 +80,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/MusicPlayer"),
             meta: {
-                showFooter: false
-            }
+                showFooter: false,
+            },
         },
         {
             //MV播放
@@ -89,8 +89,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/MVPlayer"),
             meta: {
-                showFooter: false
-            }
+                showFooter: false,
+            },
         },
         {
             //云村
@@ -98,8 +98,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/CloudVillage"),
             meta: {
-                showFooter: true
-            }
+                showFooter: true,
+            },
         },
     ],
     linkActiveClass: "active",

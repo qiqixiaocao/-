@@ -1,9 +1,14 @@
 <template>
   <div id="app">
-    <transition mode="out-in">
-      <router-view></router-view>
-    </transition>
-    <Footer v-show="$route.meta.showFooter"></Footer>
+    <header></header>
+    <main>
+      <transition mode="out-in">
+        <router-view></router-view>
+      </transition>
+    </main>
+    <footer>
+      <Footer v-show="$route.meta.showFooter"></Footer>
+    </footer>
   </div>
 </template>
 
