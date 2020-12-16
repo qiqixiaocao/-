@@ -1,16 +1,15 @@
 <!--  -->
 <template>
   <div class="musicplayer">
-    <div class="title">
-      <i class="iconfont icon-zuobian" @click="back"></i>
-      <div class="msg">
-        <span class="sp1">{{ songName }}</span
-        ><br /><span class="sp2">{{ songArt }}</span>
-      </div>
-    </div>
-    <div class="cover-img">
-      <img :src="songImg" alt="" width="100%" height="100%" />
-    </div>
+    <van-nav-bar
+      :title="Songtitle"
+      left-text="返回"
+      right-text="分享"
+      left-arrow
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    />
+    <audio :src="audiourl" autoplay controls="controls"></audio>
   </div>
 </template>
 
@@ -24,10 +23,8 @@ export default {
   data() {
     //这里存放数据
     return {
-      songId: "", //歌曲id
-      songName: "", //歌曲名字
-      songImg: "", //歌曲封面图
-      songArt: "", //歌手
+      audiourl: "",
+      Songtitle: "",
     };
   },
   //监听属性 类似于data概念
@@ -36,35 +33,37 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    back() {
-      //返回上一级
+    onClickLeft() {
       this.$router.go(-1);
     },
-    getMusicMsg() {
-      //   const id = this.$route.query && this.$route.query.id;
-      const id = 347230;
-      this.$axios.get(`api/song/detail?ids=${id}`).then((res) => {
-        if (res.data.code == 200) {
-          this.songId = res.data.songs[0].al.id; //歌曲id
-          this.songName = res.data.songs[0].al.name; //歌曲名字
-          this.songImg = res.data.songs[0].al.picUrl; //歌曲封面图
-          this.songArt = res.data.songs[0].ar[0].name; //歌手
-        }
-      });
+    onClickRight() {
+      console.log("分享");
+    },
+    getmusicUrl() {
+      // console.log(this.$route);
+      if (this.$route.query.id) {
+        this.$axios.get("api/song/url?id=" + this.$route.query.id).then((res) => {
+          // console.log(res.data, "123");
+          this.audiourl = res.data.data[0].url;
+          this.Songtitle = res.data.data[0];
+          this.Songtitle = this.$route.query.songname;
+        });
+        this.$axios.get("api/song/detail?ids=" + this.$route.query.id).then((res) => {
+          res;
+          // console.log(res, "歌曲详情", res.data.songs[0].name);
+        });
+      }
+      // song/detail
+      // console.log(this.$route.query);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.getMusicMsg();
+    this.getmusicUrl();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
+
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>

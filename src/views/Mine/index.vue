@@ -129,12 +129,12 @@ export default {
       })
         .then(() => {
           //点击确定
-          localStorage.removeItem("userId");
-          localStorage.removeItem("cookie");
+          localStorage.clear();
           Toast.success({
             message: "您已成功退出登录！",
             duration: 2000,
           });
+          this.$axios.get("api/logout");
           this.$router.push("/login");
         })
         .catch(() => {
@@ -172,6 +172,7 @@ export default {
         },
       });
       //   console.log(id);
+      // console.log(id);
     },
     delList(index) {
       //数据赋值

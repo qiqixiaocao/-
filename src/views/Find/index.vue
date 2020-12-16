@@ -81,11 +81,11 @@
     <!-- 轮播图 -->
     <van-swipe :autoplay="2000" style="height: 100%" :height="145">
       <van-swipe-item v-for="(image, index) in images" :key="index">
-        <img :src="image.pic" style="margin: 0 20px" />
+        <img :src="image.imageUrl" style="margin: 0 20px" />
       </van-swipe-item>
     </van-swipe>
     <!-- 每日推荐图标 -->
-    <div style="display: flex; text-align: center; background: #fff">
+    <div style="display: flex; text-align: center; background: #fff; overflow-x: scroll">
       <dl style="width: 15%; margin: 10px" v-for="item in icons" :key="item.id">
         <dt style="background: rgb(253, 120, 119); border-radius: 50%; margin: 10px 0">
           <img :src="item.iconUrl" alt="" style="width: 80%; height: 80%" />
@@ -203,14 +203,14 @@
           <van-cell
             v-for="item in rowforpic"
             :key="item.id"
-            style="padding: 0;width:360px;height:55px:line-height55px;"
+            style="padding: 0;width:20rem;height:55px:line-height55px;"
           >
             <!-- 使用 title 插槽来自定义标题 -->
             <template #title>
               <span class="custom-title" style="float: left">
                 <img :src="item.picUrl" alt="" />&nbsp;
               </span>
-              <p style="padding: 15px 10px 0 0">
+              <p style="padding: 15px 10px 0 0; width: 20rem">
                 <span style="font-size: 18px" v-text="item.name"></span>
                 <span
                   style="color: #aaa; padding-left: 10px"
@@ -266,26 +266,19 @@ export default {
     //各个接口
     getApp() {
       //轮播图接口
-      this.$axios.get("/api/homepage/block/page").then((res) => {
+
+      this.$axios.get("api/banner").then((res) => {
+        this.images = res.data.banners;
         // console.log(res);
-        // console.log(res.data.data.blocks);
-        // console.log(res.data.data.blocks[0].extInfo.banners); //banners   轮播---10张图片
-        // console.log(res.data.data.blocks[0].extInfo.banners[0].pic); //banner轮播的图片---第一张
-        this.images = res.data.data.blocks[0].extInfo.banners;
-        // console.log(this.images);
       });
 
       //每日推荐接口
       this.$axios.get("/api/homepage/dragon/ball").then((res) => {
-        // console.log(res);
-        // console.log(res.data.data); //icon图标---6个icon的图标
         this.icons = res.data.data;
-        // console.log(this.icons[0].iconUrl);
       });
 
       //推荐歌单
       this.$axios.get("/api/personalized").then((res) => {
-        console.log(res);
         this.tuipics = res.data.result;
       });
 
@@ -301,8 +294,8 @@ export default {
 
       //排行榜----推荐新音乐
       this.$axios.get("/api/personalized/newsong").then((res) => {
-        console.log(res);
-        console.log(res.data.result[0].picUrl);
+        // console.log(res);
+        // console.log(res.data.result[0].picUrl);
         this.rowpics = res.data.result;
         for (let i = 0; i < 3; i++) {
           this.rowforpic.push(res.data.result[i]);
@@ -312,7 +305,7 @@ export default {
     getSongList() {
       //歌单分类
       this.$axios.get("api/playlist/catlist").then((res) => {
-        console.log(res);
+        // console.log(res);
       });
     },
   },
@@ -322,13 +315,6 @@ export default {
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
   components: {},
 };
 </script>
