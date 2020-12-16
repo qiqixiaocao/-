@@ -12,16 +12,30 @@ export default {
   components: {},
   data() {
     //这里存放数据
-    return {};
+    return {
+      Songs: [],
+    };
   },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    getSongs() {
+      const id = this.$route.query && this.$route.query.id;
+      //   console.log(id);
+      this.$axios.get(`api/playlist/detail?id=${id}`).then((res) => {
+        console.log(res);
+        this.Songs = res.data.playlist.tracks;
+        console.log(this.Songs);
+      });
+    },
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.getSongs();
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前

@@ -171,7 +171,7 @@ export default {
           id,
         },
       });
-      console.log(id);
+      //   console.log(id);
     },
     delList(index) {
       //数据赋值
@@ -227,7 +227,7 @@ export default {
       //获取用户歌单
       this.$axios.get(`api/user/playlist?uid=${this.userId}`).then((res) => {
         if (res.status === 200) {
-          console.log(res.data.playlist);
+          //   console.log(res.data.playlist);
           let playlist = res.data.playlist;
           for (let i = 0; i < playlist.length; i++) {
             let ListName = playlist[i].name; //歌单名称
@@ -241,7 +241,7 @@ export default {
               ListNum,
             });
           }
-          console.log(this.Lists);
+          //   console.log(this.Lists);
         }
       });
     },
