@@ -84,8 +84,12 @@ export default {
   //方法集合
   methods: {
     goMusicList(id) {
-      this.$router.push(`/musiclist/${id}`);
-      console.log(id);
+      this.$router.push({
+        path: "/musiclist",
+        query: {
+          id,
+        },
+      });
     },
     delList(index) {
       //数据赋值

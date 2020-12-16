@@ -27,12 +27,12 @@ export default {
           console.log(res);
         });
     },
-    // getSongList() {
-    //   //歌单分类
-    //   this.$axios.get("api/playlist/catlist").then((res) => {
-    //     console.log(res);
-    //   });
-    // },
+    getSongList() {
+      //歌单分类
+      this.$axios.get("api/playlist/catlist").then((res) => {
+        console.log(res);
+      });
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
