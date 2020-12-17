@@ -51,7 +51,7 @@ export default {
       var id = this.$route.query.id;
       this.img = this.$route.query.url;
       this.name = this.$route.query.title;
-      this.$axios.get(`/api/artist/top/song?id=${id}`).then((res) => {
+      this.$request.get(`/artist/top/song?id=${id}`).then((res) => {
         this.songs = res.data.songs;
         // console.log(this.songs);
       });

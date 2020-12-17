@@ -40,7 +40,7 @@ export default {
   //方法集合
   methods: {
     getCitys() {
-      this.$axios.get("/api/artist/list?type=-1&area=7").then((res) => {
+      this.$request.get("/artist/list?type=-1&area=7").then((res) => {
         var list = res.data.artists;
         let map = {
           //定义一个map对象

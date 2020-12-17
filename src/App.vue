@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <header></header>
     <main>
       <transition mode="out-in">
         <router-view></router-view>

@@ -81,8 +81,8 @@ export default {
       }
     },
     tologin() {
-      this.$axios
-        .get(`api/login/cellphone?phone=${this.tel}&password=${this.password}`)
+      this.$request
+        .get(`/login/cellphone?phone=${this.tel}&password=${this.password}`)
         .then((res) => {
           console.log(res, "11111");
           if (res.data.code == 502) {
@@ -94,7 +94,7 @@ export default {
           window.localStorage.setItem("userId", res.data.profile.userId);
           window.localStorage.setItem("cookie", res.data.cookie);
 
-          console.log(res.data.profile.userId, "22222");
+        //   console.log(res.data.profile.userId, "22222");
         });
       // console.log(this.tel,"111111");
     },

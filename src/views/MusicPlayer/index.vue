@@ -24,9 +24,7 @@ export default {
   components: {
     Aplayer,
   },
-  mounted() {
-    this.getmusicUrl();
-  },
+
   data() {
     //这里存放数据
     return {
@@ -55,6 +53,8 @@ export default {
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    this.getmusicUrl();
+
     this.Songtitle = this.$route.query.songname;
   },
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
