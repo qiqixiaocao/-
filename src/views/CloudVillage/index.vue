@@ -15,16 +15,16 @@
     </van-row>
     <van-row v-if="falg"> 1111111</van-row>
     <van-row v-else
-      ><van-tabs v-model="active" swipeable >
-        
-        <van-tab title="视频"><van-search
-  v-model="value"
-  shape="round"
-  placeholder="请输入搜索关键词"
-  input-align="center"
-  @click="videohot"
-/></van-tab>
-        <van-tab title="演唱" >内容 2</van-tab>
+      ><van-tabs v-model="active" swipeable>
+        <van-tab title="视频"
+          ><van-search
+            v-model="value"
+            shape="round"
+            placeholder="请输入搜索关键词"
+            input-align="center"
+            @click="videohot"
+        /></van-tab>
+        <van-tab title="演唱">内容 2</van-tab>
         <van-tab title="音乐安利">内容 3</van-tab>
         <van-tab title="演奏">内容 4</van-tab>
         <van-tab title="MV">内容 5</van-tab>
@@ -37,7 +37,6 @@
 </template>
 
 <script>
-
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 export default {
@@ -46,8 +45,7 @@ export default {
   data() {
     //这里存放数据
     return {
-     
-      value:"",
+      value: "",
       falg: false,
       active: "b",
     };
@@ -67,12 +65,10 @@ export default {
       }
     },
 
-     videohot(){
-       this.$router.push("/hotsong")
-       console.log("aaa");
-
-     },
-     
+    videohot() {
+      this.$router.push("/hotsong");
+      console.log("aaa");
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},

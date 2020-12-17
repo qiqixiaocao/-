@@ -1,16 +1,7 @@
 <!--  -->
 <template>
-  <div class="login" style="margin-top: 50px">
-    登录
-
-    <van-cell-group>
-      <!-- <van-field
-    v-model="username"
-    error
-    required
-    label="用户名"
-    placeholder="请输入用户名"
-  /> -->
+  <div class="cover">
+    <div class="login">
       <van-field
         required
         label="手机号"
@@ -18,28 +9,31 @@
         @blur="phonenumber"
         v-model="tel"
       />
-      <van-field v-model="password" type="password" label="密码" />
-      <van-field center clearable label="短信验证码" placeholder="请输入短信验证码">
-        <template #button>
-          <van-button size="small" type="primary">发送验证码</van-button>
-        </template>
-      </van-field>
-      <!-- <van-number-keyboard
-        :show="show"
-        theme="custom"
-        extra-key="."
-        close-button-text="完成"
-        @blur="show = false"
-        @input="onInput"
-        @delete="onDelete"
-        v-model="numtxt"
-      /> -->
-      <van-row type="flex" justify="center">
-        <van-col span="6">
-          <van-button round type="info" @click="tologin">一键登录</van-button>
-        </van-col>
-      </van-row>
-    </van-cell-group>
+      <van-field
+        ref="pwd"
+        style="margin-top=10px"
+        required
+        v-model="password"
+        type="password"
+        label="密码"
+        placeholder="请输入密码"
+      />
+      <i class="iconfont icon-llshakeabouticon" @click="showPwd"></i>
+    </div>
+    <div class="btns">
+      <van-button
+        round
+        plain
+        type="danger"
+        @click="tologin"
+        block
+        :disabled="this.tel && this.password ? false : true"
+        >登录</van-button
+      >
+      <van-button round plain type="danger" @click="tofind" block style="margin-top: 15px"
+        >游客登录</van-button
+      >
+    </div>
   </div>
 </template>
 
@@ -72,13 +66,18 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    showPwd() {
+      this.$refs.pwd.type = "text";
+    },
     phonenumber() {
       let reg = /^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])\d{8}$/;
-      if (reg.test(this.tel)) {
-        Toast("输入成功");
-      } else {
-        Toast("请输入正确的手机格式");
+      if (!reg.test(this.tel)) {
+        Toast.fail({ message: "输入的手机格式有误", duration: 2000 });
+        this.tel = "";
       }
+    },
+    tofind() {
+      this.$router.push("/index");
     },
     tologin() {
       this.$request
@@ -86,33 +85,18 @@ export default {
         .then((res) => {
           //   console.log(res, "11111");
           if (res.data.code == 502) {
-            Toast("请输入正确的密码");
+            Toast.fail({ message: "输入的密码有误", duration: 2000 });
+            this.password = "";
           } else {
+            Toast.success({ message: "登录成功", duration: 2000 });
             this.$router.push("/index");
           }
-
           window.localStorage.setItem("userId", res.data.profile.userId);
           window.localStorage.setItem("cookie", res.data.cookie);
-
           //   console.log(res.data.profile.userId, "22222");
         });
       // console.log(this.tel,"111111");
     },
-
-    // onInput(value) {
-    //   this.phone += value;
-    //   // this.vercode+=value
-    // },
-    // onDelete() {
-    //   let value = this.phone.split("");
-    //   value.pop();
-    //   this.phone = value.join("");
-    // },
-    // telsumb() {
-    //   this.show = true;
-    // },
-    // codesumb(){
-    // }
   },
 
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -128,6 +112,36 @@ export default {
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang="scss" scoped>
-//@import url(); 引入公共css类
+<style>
+.cover {
+  position: relative;
+  width: 100%;
+  height: 665px;
+  background: url("../../assets/img/wangyi-cover.jpeg") center/cover;
+}
+.login {
+  position: absolute;
+  left: 10%;
+  bottom: 35%;
+}
+.btns {
+  position: absolute;
+  width: 306px;
+  left: 10%;
+  bottom: 16%;
+}
+.icon-llshakeabouticon {
+  position: absolute;
+  font-size: 20px;
+  right: 2%;
+  bottom: 11%;
+}
+.van-field__label {
+  width: 100px;
+  font-size: 20px;
+  margin-right: 0;
+}
+.van-field:nth-of-type(1) {
+  margin-bottom: 20px;
+}
 </style>

@@ -1,12 +1,10 @@
 <template>
   <div class="">
     <van-row>
-      <van-col span="2"
-        ><van-nav-bar left-arrow @click-left="onClickLeft"
-      /></van-col>
+      <van-col span="2"><van-nav-bar left-arrow @click-left="onClickLeft" /></van-col>
       <van-col span="20"
         ><van-search
-        class="search"
+          class="search"
           v-model="value"
           placeholder="请输入搜索关键词"
           input-align="center"
@@ -17,13 +15,16 @@
     <br />
 
     <h4>热搜榜</h4>
-    <van-divider style="border-color:#999" />
+    <van-divider style="border-color: #999" />
     <div class="hotlistbox">
       <ul>
-        <li v-for="(tit , index) in hotlist" :key="tit.first" ><p>{{index+1}}</p>{{tit.first}}</li>
+        <li v-for="(tit, index) in hotlist" :key="tit.first">
+          <p>{{ index + 1 }}</p>
+          {{ tit.first }}
+        </li>
       </ul>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
@@ -31,7 +32,7 @@ export default {
   data() {
     return {
       value: "",
-      hotlist:[]
+      hotlist: [],
     };
   },
   computed: {},
@@ -41,20 +42,17 @@ export default {
       this.$router.go(-1);
     },
     songhot() {
-    
-    
       console.log("songhot");
-      
     },
   },
-  created() {this.$axios.get('api/search/hot').then((res)=>{
-        console.log(res,"hot11111")
-        console.log(res.data.result.hots);
+  created() {
+    this.$request.get("/search/hot").then((res) => {
+      console.log(res, "hot11111");
+      console.log(res.data.result.hots);
 
-          this.hotlist=res.data.result.hots
-      console.log(this.hotlist,"222222");
-      })
-
+      this.hotlist = res.data.result.hots;
+      console.log(this.hotlist, "222222");
+    });
   },
   mounted() {},
   beforeCreate() {},
@@ -78,26 +76,26 @@ h4 {
   font-size: 14px;
   margin-bottom: 15px;
 }
-.search{
-  margin-top:10px
+.search {
+  margin-top: 10px;
 }
-.hotlistbox ul{
+.hotlistbox ul {
   width: 100%;
   // background: pink;
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
 }
-.hotlistbox ul li{
+.hotlistbox ul li {
   width: 50%;
   margin-bottom: 16px;
   font-size: 14px;
 }
-li{
+li {
   display: flex;
 }
-p{
-//  font-style: none;
+p {
+  //  font-style: none;
   display: inline-block;
   width: 15px;
 }
