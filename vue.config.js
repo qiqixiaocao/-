@@ -61,7 +61,7 @@ module.exports = {
     port: 8080,
     https: false,
     hotOnly: false,
-    // http 代理配置
+    // http 代理配置  
     proxy: {
       "/api": {
         target: "http://localhost:3000", //开发接口

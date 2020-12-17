@@ -85,9 +85,13 @@
       </van-swipe-item>
     </van-swipe>
     <!-- 每日推荐图标 -->
-    <div style="display: flex; text-align: center; background: #fff; overflow-x: scroll">
+    <div
+      style="display: flex; text-align: center; background: #fff; overflow-x: scroll"
+    >
       <dl style="width: 15%; margin: 10px" v-for="item in icons" :key="item.id">
-        <dt style="background: rgb(253, 120, 119); border-radius: 50%; margin: 10px 0">
+        <dt
+          style="background: rgb(253, 120, 119); border-radius: 50%; margin: 10px 0"
+        >
           <img :src="item.iconUrl" alt="" style="width: 80%; height: 80%" />
         </dt>
         <dt
@@ -143,7 +147,6 @@
     </div>
 
     <!-- 私人定制  精选华语金曲 select-->
-
     <div
       style="background-color: #fff; border-radius: 20px; padding: 10px 0; margin: 10px 0"
     >
@@ -171,6 +174,39 @@
         </van-cell>
       </div>
     </div>
+
+    <!-- 精选音乐视频 -->
+    <div
+      style="background-color: #fff;border-radius:20px; padding:10px 0;margin:10px 0"
+    >
+      <div style="height:45px;margin:0 15px">
+        <h2 style="float:left;width:250px">精选音乐视频</h2>
+        <van-button type="primary" to="index" class="more">去推歌 ></van-button>
+      </div>
+      <div style="margin:0 10px">
+        <el-carousel
+          :interval="20000"
+          indicator-position="none"
+          type="card"
+          height="1px"
+          style="background:#fff;height:118px;"
+        >
+          <el-carousel-item v-for="(item, index) in videos" :key="index">
+            <div style="background:#fff;height:114px;">
+              <img
+                :src="item.cover"
+                alt=""
+                style="padding:0;margin:0;width:209px;position:relative;border-radius:20px;"
+              />
+              <p
+                v-text="item.artistName + item.name"
+                style="position:absolute;left:25px;bottom:10px;width:160px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+              ></p>
+            </div>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+    </div>
     <!-- 音乐日历 -->
 
     <!-- 专属场景歌单 -->
@@ -181,7 +217,7 @@
 
     <!-- 排行榜 -->
     <div
-      style="background-color: #fff; border-radius: 20px; padding: 10px 0; margin: 10px 0"
+      style="background-color:#fff;border-radius:20px;padding:10px 0;margin:10px 0"
     >
       <div style="height: 45px; margin: 0 15px">
         <h2 style="float: left; width: 150px">排行榜</h2>
@@ -252,7 +288,8 @@ export default {
       tuipics: [],
       selforpic: [],
       rowforpic: [],
-      rowpics: [],
+      active: "1",
+      videos: [],
     };
   },
   computed: {},
@@ -286,12 +323,24 @@ export default {
       this.$request.get("/personalized/newsong").then((res) => {
         // console.log(res);
         // console.log(res.data.result[0].picUrl);
-        this.rowpics = res.data.result;
         for (let i = 3; i < 6; i++) {
           this.selforpic.push(res.data.result[i]);
         }
       });
-
+      //
+      //
+      //精音乐视频
+      this.$request.get("/mv/all").then((res) => {
+        console.log(res);
+        console.log(res.data.data);
+        console.log(res.data.data[0].cover);
+        for (let i = 0; i < 6; i++) {
+          this.videos.push(res.data.data[i]);
+        }
+      });
+      //
+      //推荐歌单
+      //
       //排行榜----推荐新音乐
       this.$request.get("/personalized/newsong").then((res) => {
         // console.log(res);
@@ -304,8 +353,9 @@ export default {
     },
     getSongList() {
       //歌单分类
-      this.$request.get("/playlist/catlist").then((res) => {
-        // console.log(res);
+
+      this.$request.get("playlist/catlist").then((res) => {
+        console.log(res);
       });
     },
   },
@@ -340,6 +390,20 @@ export default {
 #square img {
   border: purple 1px solid;
 }
+// ========精选音乐视频=======
+.el-carousel__item:nth-child(2n) {
+  background-color: #fff;
+  height: 115px;
+  width: 190px;
+  border-radius: 20px;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #fff;
+  border-radius: 20px;
+  height: 115px;
+}
+// ===============
 
 // ====== 推荐歌单 =====
 .recommed {
