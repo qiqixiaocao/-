@@ -1,18 +1,15 @@
 <!--  -->
 <template>
-  <div class="userinfo">注册
+  <div class="userinfo">
+    注册
     <van-field
-        required
-        label="手机号"
-        placeholder="请输入手机号"
-        @blur="phonenumber"
-        v-model="tel"
-      />
-      <van-field v-model="password" type="password" label="密码" />
-      
-
-
-
+      required
+      label="手机号"
+      placeholder="请输入手机号"
+      @blur="phonenumber"
+      v-model="tel"
+    />
+    <van-field v-model="password" type="password" label="密码" />
   </div>
 </template>
 

@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+    mode: "history",
     routes: [{
             path: "/",
             redirect: "/index",
@@ -71,7 +72,7 @@ const router = new VueRouter({
             //歌曲播放
             path: "/musicplayer/:id",
             component: () =>
-                import ("../views/MusicPlayer"),
+                import("../views/MusicPlayer"),
             meta: {
                 showFooter: false,
             },

@@ -8,11 +8,13 @@ import pinyin from 'pinyin'
 import 'vant/lib/index.css';
 import 'mint-ui/lib/style.css'
 import store from './store'
+import request from './util/request';
 Vue.prototype.pinyin = pinyin
 
 Vue.use(Vant);
 Vue.use(MintUI)
-Vue.prototype.$axios = axios;
+// Vue.prototype.$axios = axios;
+Vue.prototype.$request = request;
 Vue.config.productionTip = false;
 
 new Vue({
