@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@moefe/vue-aplayer": "^2.0.0-beta.5",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.1",
@@ -24,10 +25,15 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
+    "css-loader": "^5.0.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "file-loader": "^6.2.0",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.1",
+    "vue-cloud-music": "^1.0.9",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
