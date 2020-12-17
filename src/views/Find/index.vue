@@ -116,7 +116,6 @@
     </div>
 
     <!-- 私人定制  精选华语金曲 select-->
-
     <div
       style="background-color: #fff;border-radius: 20px;padding:10px 0;margin:10px 0"
     >
@@ -144,6 +143,39 @@
         </van-cell>
       </div>
     </div>
+
+    <!-- 精选音乐视频 -->
+    <div
+      style="background-color: #fff;border-radius:20px; padding:10px 0;margin:10px 0"
+    >
+      <div style="height:45px;margin:0 15px">
+        <h2 style="float:left;width:250px">精选音乐视频</h2>
+        <van-button type="primary" to="index" class="more">去推歌 ></van-button>
+      </div>
+      <div style="margin:0 10px">
+        <el-carousel
+          :interval="20000"
+          indicator-position="none"
+          type="card"
+          height="1px"
+          style="background:#fff;height:118px;"
+        >
+          <el-carousel-item v-for="(item, index) in videos" :key="index">
+            <div style="background:#fff;height:114px;">
+              <img
+                :src="item.cover"
+                alt=""
+                style="padding:0;margin:0;width:209px;position:relative;border-radius:20px;"
+              />
+              <p
+                v-text="item.artistName + item.name"
+                style="position:absolute;left:25px;bottom:10px;width:160px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+              ></p>
+            </div>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+    </div>
     <!-- 音乐日历 -->
 
     <!-- 专属场景歌单 -->
@@ -154,41 +186,181 @@
 
     <!-- 排行榜 -->
     <div
-      style="background-color: #fff;border-radius: 20px;padding:10px 0;margin:10px 0"
+      style="background-color:#fff;border-radius:20px;padding:10px 0;margin:10px 0"
     >
       <div style="height:45px;margin:0 15px">
         <h2 style="float:left;width:150px">排行榜</h2>
         <van-button type="primary" to="index" class="more">更多 ></van-button>
       </div>
-      <div style="margin:0 12px;height:215px">
-        <div
-          style="width:95%;padding:10px 0 0 12px;box-shadow:#ddd 0px 0px 1px 1px;border-radius:10px"
-        >
-          <h3 style="text-align:center;padding-bottom:8px">
-            硬地原创音乐榜
-            <span style="color:#bbb;font-weight:400">></span>
-          </h3>
-          <van-cell
-            v-for="item in rowforpic"
-            :key="item.id"
-            style="padding: 0;width:360px;height:55px:line-height55px;"
-          >
-            <!-- 使用 title 插槽来自定义标题 -->
-            <template #title>
-              <span class="custom-title" style="float:left">
-                <img :src="item.picUrl" alt="" />&nbsp;
-              </span>
-              <p style="padding:15px 10px 0 0;">
-                <span style="font-size:18px" v-text="item.name"></span>
-                <span
-                  style="color:#aaa;padding-left:10px"
-                  v-text="item.song.album.artists[0].name"
-                ></span>
-                <span style="color:green;float:right">新</span>
-              </p>
-            </template>
-          </van-cell>
-        </div>
+      <!--  -->
+
+      <!-- 榜单集合 -->
+
+      <div
+        style="width:100%;height:240px;display:flex;flex-wrap: nowrap;overflow:hidden;margin-bottom:10px"
+      >
+        <!-- 1原创榜 +边框阴影 -->
+        <mt-tab-container v-model="active" swipeable style="width:100%; ">
+          <mt-tab-container-item id="1" style="width:90%; ">
+            <div
+              style="width:90%;padding:10px 14px;margin:10px 0 10px 12px;box-shadow:#ddd 0px 0px 2px 2px;border-radius:10px;float:left"
+            >
+              <h3 style="text-align:center;padding-bottom:8px">
+                硬地原创音乐榜
+                <span style="color:#bbb;font-weight:400"></span>
+              </h3>
+              <van-cell
+                v-for="item in rowforpic"
+                :key="item.id"
+                style="padding: 0;width:330px;height:55px:line-height55px;"
+              >
+                <!-- 使用 title 插槽来自定义标题 -->
+                <template #title>
+                  <span class="custom-title" style="float:left">
+                    <img :src="item.picUrl" alt="" />&nbsp;
+                  </span>
+                  <p style="padding:15px 10px 0 0;">
+                    <span style="font-size:18px" v-text="item.name"></span>
+                    <span
+                      style="color:#aaa;padding-left:10px"
+                      v-text="item.song.album.artists[0].name"
+                    ></span>
+                    <span style="color:green;float:right">新</span>
+                  </p>
+                </template>
+              </van-cell>
+            </div>
+          </mt-tab-container-item>
+
+          <!-- 2.云音乐飙升榜 -->
+          <mt-tab-container-item id="2" style="width:90%; ">
+            <div
+              style="width:90%;padding:10px 14px;margin:10px 0 10px 12px;box-shadow:#ddd 0px 0px 2px 2px;border-radius:10px;float:left"
+            >
+              <h3 style="text-align:center;padding-bottom:8px">
+                云音乐飙升榜
+                <span style="color:#bbb;font-weight:400"></span>
+              </h3>
+              <van-cell
+                v-for="item in rowforpic"
+                :key="item.id"
+                style="padding: 0;width:330px;height:55px:line-height55px;"
+              >
+                <!-- 使用 title 插槽来自定义标题 -->
+                <template #title>
+                  <span class="custom-title" style="float:left">
+                    <img :src="item.picUrl" alt="" />&nbsp;
+                  </span>
+                  <p style="padding:15px 10px 0 0;">
+                    <span style="font-size:18px" v-text="item.name"></span>
+                    <span
+                      style="color:#aaa;padding-left:10px"
+                      v-text="item.song.album.artists[0].name"
+                    ></span>
+                    <span style="color:green;float:right">新</span>
+                  </p>
+                </template>
+              </van-cell>
+            </div>
+          </mt-tab-container-item>
+
+          <!-- 3.云音乐热歌榜 -->
+          <mt-tab-container-item id="3" style="width:90%; ">
+            <div
+              style="width:90%;padding:10px 14px;margin:10px 0 10px 12px;box-shadow:#ddd 0px 0px 2px 2px;border-radius:10px;float:left"
+            >
+              <h3 style="text-align:center;padding-bottom:8px">
+                云音乐热歌榜
+                <span style="color:#bbb;font-weight:400"></span>
+              </h3>
+              <van-cell
+                v-for="item in rowforpic"
+                :key="item.id"
+                style="padding: 0;width:330px;height:55px:line-height55px;"
+              >
+                <!-- 使用 title 插槽来自定义标题 -->
+                <template #title>
+                  <span class="custom-title" style="float:left">
+                    <img :src="item.picUrl" alt="" />&nbsp;
+                  </span>
+                  <p style="padding:15px 10px 0 0;">
+                    <span style="font-size:18px" v-text="item.name"></span>
+                    <span
+                      style="color:#aaa;padding-left:10px"
+                      v-text="item.song.album.artists[0].name"
+                    ></span>
+                    <span style="color:green;float:right">新</span>
+                  </p>
+                </template>
+              </van-cell>
+            </div>
+          </mt-tab-container-item>
+
+          <!-- 4.云音乐说唱榜 -->
+          <mt-tab-container-item id="4" style="width:90%; ">
+            <div
+              style="width:90%;padding:10px 14px;margin:10px 0 10px 12px;box-shadow:#ddd 0px 0px 2px 2px;border-radius:10px;float:left"
+            >
+              <h3 style="text-align:center;padding-bottom:8px">
+                云音乐说唱榜
+                <span style="color:#bbb;font-weight:400"></span>
+              </h3>
+              <van-cell
+                v-for="item in rowforpic"
+                :key="item.id"
+                style="padding: 0;width:330px;height:55px:line-height55px;"
+              >
+                <!-- 使用 title 插槽来自定义标题 -->
+                <template #title>
+                  <span class="custom-title" style="float:left">
+                    <img :src="item.picUrl" alt="" />&nbsp;
+                  </span>
+                  <p style="padding:15px 10px 0 0;">
+                    <span style="font-size:18px" v-text="item.name"></span>
+                    <span
+                      style="color:#aaa;padding-left:10px"
+                      v-text="item.song.album.artists[0].name"
+                    ></span>
+                    <span style="color:green;float:right">新</span>
+                  </p>
+                </template>
+              </van-cell>
+            </div>
+          </mt-tab-container-item>
+
+          <!-- 5.云音乐新歌榜 -->
+          <mt-tab-container-item id="5" style="width:90%; ">
+            <div
+              style="width:90%;padding:10px 14px;margin:10px 0 10px 12px;box-shadow:#ddd 0px 0px 2px 2px;border-radius:10px;float:left"
+            >
+              <h3 style="text-align:center;padding-bottom:8px">
+                云音乐新歌榜
+                <span style="color:#bbb;font-weight:400"></span>
+              </h3>
+              <van-cell
+                v-for="item in rowforpic"
+                :key="item.id"
+                style="padding: 0;width:330px;height:55px:line-height55px;"
+              >
+                <!-- 使用 title 插槽来自定义标题 -->
+                <template #title>
+                  <span class="custom-title" style="float:left">
+                    <img :src="item.picUrl" alt="" />&nbsp;
+                  </span>
+                  <p style="padding:15px 10px 0 0;">
+                    <span style="font-size:18px" v-text="item.name"></span>
+                    <span
+                      style="color:#aaa;padding-left:10px"
+                      v-text="item.song.album.artists[0].name"
+                    ></span>
+                    <span style="color:green;float:right">新</span>
+                  </p>
+                </template>
+              </van-cell>
+            </div>
+          </mt-tab-container-item>
+        </mt-tab-container>
+        <!--  -->
       </div>
     </div>
 
@@ -220,7 +392,8 @@ export default {
       tuipics: [],
       selforpic: [],
       rowforpic: [],
-      rowpics: [],
+      active: "1",
+      videos: [],
     };
   },
   computed: {},
@@ -253,24 +426,36 @@ export default {
 
       //推荐歌单
       this.$axios.get("/api/personalized").then((res) => {
-        console.log(res);
+        // console.log(res);
         this.tuipics = res.data.result;
       });
 
-      //精选歌曲
+      //私人订制-精选歌曲
       this.$axios.get("/api/personalized/newsong").then((res) => {
         // console.log(res);
         // console.log(res.data.result[0].picUrl);
-        this.rowpics = res.data.result;
         for (let i = 3; i < 6; i++) {
           this.selforpic.push(res.data.result[i]);
         }
       });
-
+      //
+      //
+      //精音乐视频
+      this.$axios.get("/api/mv/all").then((res) => {
+        console.log(res);
+        console.log(res.data.data);
+        console.log(res.data.data[0].cover);
+        for (let i = 0; i < 6; i++) {
+          this.videos.push(res.data.data[i]);
+        }
+      });
+      //
+      //推荐歌单
+      //
       //排行榜----推荐新音乐
       this.$axios.get("/api/personalized/newsong").then((res) => {
-        console.log(res);
-        console.log(res.data.result[0].picUrl);
+        // console.log(res);
+        // console.log(res.data.result[0].picUrl);
         this.rowpics = res.data.result;
         for (let i = 0; i < 3; i++) {
           this.rowforpic.push(res.data.result[i]);
@@ -316,6 +501,20 @@ export default {
 #square img {
   border: purple 1px solid;
 }
+// ========精选音乐视频=======
+.el-carousel__item:nth-child(2n) {
+  background-color: #fff;
+  height: 115px;
+  width: 190px;
+  border-radius: 20px;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #fff;
+  border-radius: 20px;
+  height: 115px;
+}
+// ===============
 
 // ====== 推荐歌单 =====
 .recommed {
