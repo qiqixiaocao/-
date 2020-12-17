@@ -24,14 +24,15 @@
   input-align="center"
   @click="videohot"
 /></van-tab>
-        <van-tab title="演唱" >内容 2</van-tab>
-        <van-tab title="音乐安利">内容 3</van-tab>
-        <van-tab title="演奏">内容 4</van-tab>
-        <van-tab title="MV">内容 5</van-tab>
+        <van-tab title="演唱">内容 2</van-tab>
+        <van-tab title="音乐安利" >内容 3</van-tab>
+        <van-tab title="演奏" >内容 4</van-tab>
+        <van-tab title="MV" >内容 5</van-tab>
         <van-tab title="生活">内容 3</van-tab>
         <van-tab title="舞蹈">内容 5</van-tab>
         <van-tab title="混剪">内容 3</van-tab>
-      </van-tabs></van-row
+      </van-tabs>
+      </van-row
     >
   </div>
 </template>
@@ -89,4 +90,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
+#nav_gd{
+  background: pink;
+}
 </style>
