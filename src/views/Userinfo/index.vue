@@ -1,6 +1,7 @@
 <!--  -->
 <template>
-  <div class="userinfo">注册
+  <div class="userinfo">
+    注册
     <van-field
         required
         label="手机号"

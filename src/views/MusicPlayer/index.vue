@@ -42,13 +42,13 @@ export default {
     getmusicUrl() {
       // console.log(this.$route);
       if (this.$route.query.id) {
-        this.$axios.get("api/song/url?id=" + this.$route.query.id).then((res) => {
+        this.$request.get("/song/url?id=" + this.$route.query.id).then((res) => {
           // console.log(res.data, "123");
           this.audiourl = res.data.data[0].url;
           this.Songtitle = res.data.data[0];
           this.Songtitle = this.$route.query.songname;
         });
-        this.$axios.get("api/song/detail?ids=" + this.$route.query.id).then((res) => {
+        this.$request.get("/song/detail?ids=" + this.$route.query.id).then((res) => {
           res;
           // console.log(res, "歌曲详情", res.data.songs[0].name);
         });

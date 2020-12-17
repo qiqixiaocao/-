@@ -134,7 +134,7 @@ export default {
             message: "您已成功退出登录！",
             duration: 2000,
           });
-          this.$axios.get("api/logout");
+          this.$request.get("/logout");
           this.$router.push("/login");
         })
         .catch(() => {
@@ -215,7 +215,7 @@ export default {
     },
     getUser() {
       //获取用户头像，用户名，用户等级
-      this.$axios.get(`api/user/detail?uid=${this.userId}`).then((res) => {
+      this.$request.get(`/user/detail?uid=${this.userId}`).then((res) => {
         if (res.data.code === 200) {
           //   console.log(res);
           this.avatarImg = res.data.profile.avatarUrl;
@@ -226,7 +226,7 @@ export default {
     },
     getPlayList() {
       //获取用户歌单
-      this.$axios.get(`api/user/playlist?uid=${this.userId}`).then((res) => {
+      this.$request.get(`/user/playlist?uid=${this.userId}`).then((res) => {
         if (res.status === 200) {
           //   console.log(res.data.playlist);
           let playlist = res.data.playlist;

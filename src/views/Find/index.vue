@@ -267,23 +267,23 @@ export default {
     getApp() {
       //轮播图接口
 
-      this.$axios.get("api/banner").then((res) => {
+      this.$request.get("/banner").then((res) => {
         this.images = res.data.banners;
         // console.log(res);
       });
 
       //每日推荐接口
-      this.$axios.get("/api/homepage/dragon/ball").then((res) => {
+      this.$request.get("/homepage/dragon/ball").then((res) => {
         this.icons = res.data.data;
       });
 
       //推荐歌单
-      this.$axios.get("/api/personalized").then((res) => {
+      this.$request.get("/personalized").then((res) => {
         this.tuipics = res.data.result;
       });
 
       //精选歌曲
-      this.$axios.get("/api/personalized/newsong").then((res) => {
+      this.$request.get("/personalized/newsong").then((res) => {
         // console.log(res);
         // console.log(res.data.result[0].picUrl);
         this.rowpics = res.data.result;
@@ -293,7 +293,7 @@ export default {
       });
 
       //排行榜----推荐新音乐
-      this.$axios.get("/api/personalized/newsong").then((res) => {
+      this.$request.get("/personalized/newsong").then((res) => {
         // console.log(res);
         // console.log(res.data.result[0].picUrl);
         this.rowpics = res.data.result;
@@ -304,8 +304,11 @@ export default {
     },
     getSongList() {
       //歌单分类
+
       this.$axios.get("api/playlist/catlist").then((res) => {
         console.log(res);
+
+    
       });
     },
   },
