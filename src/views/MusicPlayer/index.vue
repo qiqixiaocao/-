@@ -1,30 +1,39 @@
 <!--  -->
 <template>
   <div class="musicplayer">
-    <van-nav-bar
-      :title="Songtitle"
-      left-text="返回"
-      right-text="分享"
-      left-arrow
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
-    />
-    <audio :src="audiourl" autoplay controls="controls"></audio>
+    <div style="padding: 10px 0">
+      <van-nav-bar
+        :title="Songtitle"
+        left-text="返回"
+        right-text="分享"
+        left-arrow
+        @click-left="onClickLeft"
+        @click-right="onClickRight"
+      />
+    </div>
+    <Aplayer :id="id"></Aplayer>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-
+import Aplayer from "../../components/Musicplay.vue";
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    Aplayer,
+  },
+  mounted() {
+    this.getmusicUrl();
+  },
   data() {
     //这里存放数据
     return {
-      audiourl: "",
+      msg: "text",
+      musicList: {},
       Songtitle: "",
+      id: "",
     };
   },
   //监听属性 类似于data概念
@@ -39,31 +48,15 @@ export default {
     onClickRight() {
       console.log("分享");
     },
-    getmusicUrl() {
-      // console.log(this.$route);
-      if (this.$route.query.id) {
-        this.$axios.get("api/song/url?id=" + this.$route.query.id).then((res) => {
-          // console.log(res.data, "123");
-          this.audiourl = res.data.data[0].url;
-          this.Songtitle = res.data.data[0];
-          this.Songtitle = this.$route.query.songname;
-        });
-        this.$axios.get("api/song/detail?ids=" + this.$route.query.id).then((res) => {
-          res;
-          // console.log(res, "歌曲详情", res.data.songs[0].name);
-        });
-      }
-      // song/detail
-      // console.log(this.$route.query);
-    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.getmusicUrl();
+    this.id = this.$route.query.id;
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-
+  mounted() {
+    this.Songtitle = this.$route.query.songname;
+  },
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>

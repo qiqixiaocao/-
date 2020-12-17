@@ -305,7 +305,7 @@ export default {
     getSongList() {
       //歌单分类
       this.$axios.get("api/playlist/catlist").then((res) => {
-        // console.log(res);
+        console.log(res);
       });
     },
   },

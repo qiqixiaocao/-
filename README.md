@@ -44,3 +44,16 @@ nextwork // 网络相关的封装文件
 common //主要的 js 文件 里面的 const.js 主要是公共的常量 和公共的方法
 
 views // 主要页面
+
+
+播放器组件。
+调用在commponents 里面的Musicplay.vue
+
+import XXX from "路径"
+
+components: {
+    Aplayer,
+  },
+
+使用的时候   <Aplayer :id="id"></Aplayer> 
+id是歌曲的ID
