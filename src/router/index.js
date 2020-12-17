@@ -14,12 +14,14 @@ const router = new VueRouter({
             path: "/index",
             component: () => import("../views/Find"),
             meta:{showFooter:true}
+
         },
         {
             //登录
             path: "/login",
             component: () => import("../views/Login"),
             meta:{showFooter:false}
+
         },
         {
             //注册
@@ -34,22 +36,43 @@ const router = new VueRouter({
             meta:{showFooter:true}
         },
         {
+            //歌手详情
+            path: "/details",
+            component: () => import("../views/Singer/details"),
+            meta: {
+                showFooter: false,
+            },
+        },
+        {
             //我的
             path: "/mine",
             component: () => import("../views/Mine"),
             meta:{showFooter:true}
+
         },
         {
             //歌单
             path: "/musiclist",
             component: () => import("../views/MusicList"),
-            meta:{showFooter:false}
+            meta: {
+                showFooter: false,
+            },
+        },
+        {
+            //歌曲播放
+            path: "/musicplayer/:id",
+            component: () =>
+                import ("../views/MusicPlayer"),
+            meta: {
+                showFooter: false,
+            },
         },
         {
             //歌曲播放
             path: "/musicplayer",
             component: () => import("../views/MusicPlayer"),
             meta:{showFooter:false}
+
         },
         {
             //MV播放
@@ -61,7 +84,9 @@ const router = new VueRouter({
             //云村
             path: "/cloudvillage",
             component: () => import("../views/CloudVillage"),
-            meta:{showFooter:true}
+            meta: {
+                showFooter: true,
+            },
         },
         {
             //云村跳热门歌曲

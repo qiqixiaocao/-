@@ -1,9 +1,19 @@
-<!--  -->
 <template>
-  <van-tabbar v-model="active" active-color="#ee0a24" inactive-color="#000">
-    <van-tabbar-item name="index" icon="music-o" to="/index">发现</van-tabbar-item>
-    <van-tabbar-item name="podcast" icon="audio" to="/singer">歌手</van-tabbar-item>
-    <van-tabbar-item name="mine" icon="contact" to="/mine">我的</van-tabbar-item>
+  <van-tabbar
+    v-model="active"
+    active-color="#ee0a24"
+    inactive-color="#000"
+    route
+  >
+    <van-tabbar-item name="index" icon="music-o" to="/index"
+      >发现</van-tabbar-item
+    >
+    <van-tabbar-item name="podcast" icon="audio" to="/singer"
+      >歌手</van-tabbar-item
+    >
+    <van-tabbar-item name="mine" icon="contact" to="/mine"
+      >我的</van-tabbar-item
+    >
     <van-tabbar-item name="cloudvillage" icon="friends-o" to="/cloudvillage"
       >云村</van-tabbar-item
     >
