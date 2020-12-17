@@ -3,7 +3,7 @@
     <transition mode="out-in">
       <router-view></router-view>
     </transition>
-    <Footer></Footer>
+    <Footer v-show="$route.meta.showFooter"></Footer>
   </div>
 </template>
 

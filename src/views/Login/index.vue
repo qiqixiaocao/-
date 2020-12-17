@@ -93,7 +93,7 @@ export default {
           if (res.data.code == 502) {
             Toast("请输入正确的密码");
           } else {
-            this.$router.push("/index.vue");
+            this.$router.push("/index");
           }
 
           window.localStorage.setItem("userId", res.data.profile.userId);
