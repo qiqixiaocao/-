@@ -176,27 +176,21 @@
       style="background-color: #fff; border-radius: 20px; padding: 10px 0; margin: 10px 0"
     >
       <div style="height: 45px; margin: 0 15px">
-        <h2 style="float: left; width: 250px">精选音乐视频</h2>
+        <h2 style="float: left">精选音乐视频</h2>
         <van-button type="primary" to="index" class="more">去推歌 ></van-button>
       </div>
-      <div style="margin: 0 10px">
-        <el-carousel
-          :interval="20000"
-          indicator-position="none"
-          type="card"
-          height="1px"
-          style="background: #fff; height: 118px"
-        >
-          <el-carousel-item v-for="(item, index) in videos" :key="index">
-            <div style="background: #fff; height: 114px">
+      <div style="margin: 0 10px; text-align: center">
+        <van-swipe :autoplay="2000" style="height: 100%" :height="145">
+          <van-swipe-item v-for="(item, index) in videos" :key="index">
+            <div style="background: #fff; height: 114px; position: relative">
               <img
                 :src="item.cover"
-                alt=""
                 style="
                   padding: 0;
                   margin: 0;
-                  width: 209px;
-                  position: relative;
+                  margin: 0 20px;
+                  width: 300px;
+                  height: 130px;
                   border-radius: 20px;
                 "
               />
@@ -204,18 +198,18 @@
                 v-text="item.artistName + item.name"
                 style="
                   position: absolute;
-                  left: 25px;
-                  bottom: 10px;
+                  left: 90px;
+                  bottom: 0px;
                   width: 160px;
-                  color: #fff;
+                  color: orange;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   white-space: nowrap;
                 "
               ></p>
             </div>
-          </el-carousel-item>
-        </el-carousel>
+          </van-swipe-item>
+        </van-swipe>
       </div>
     </div>
     <!-- 音乐日历 -->
@@ -283,12 +277,11 @@
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
-//例如：import Model1 from "../../components/common/model1";
 import Vue from "vue";
 import { Lazyload } from "vant";
+import elementUi from "element-ui";
 Vue.use(Lazyload);
-
+Vue.use(elementUi);
 export default {
   data() {
     //这里存放数据
@@ -314,7 +307,6 @@ export default {
     //各个接口
     getApp() {
       //轮播图接口
-
       this.$request.get("/banner").then((res) => {
         this.images = res.data.banners;
         // console.log(res);
@@ -327,7 +319,7 @@ export default {
 
       //推荐歌单
       this.$request.get("/personalized").then((res) => {
-        this.tuipics = res.data.result;
+        this.tuipics = res.data.result.slice("0", "6");
       });
 
       //精选歌曲
@@ -348,6 +340,7 @@ export default {
         for (let i = 0; i < 6; i++) {
           this.videos.push(res.data.data[i]);
         }
+        // console.log(this.videos);
       });
       //
       //推荐歌单
@@ -366,7 +359,7 @@ export default {
       //歌单分类
 
       this.$request.get("playlist/catlist").then((res) => {
-        // console.log(res);
+        console.log(res);
       });
     },
   },
@@ -414,7 +407,6 @@ export default {
   border-radius: 20px;
   height: 115px;
 }
-// ===============
 
 // ====== 推荐歌单 =====
 .recommed {

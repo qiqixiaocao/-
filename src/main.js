@@ -9,7 +9,8 @@ import 'mint-ui/lib/style.css';
 import store from './store';
 import axios from 'axios';
 import request from "./util/request";
-
+import elementui from "element-ui";
+Vue.use(elementui);
 Vue.use(Vant);
 Vue.use(MintUI);
 Vue.prototype.pinyin = pinyin;

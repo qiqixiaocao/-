@@ -14,8 +14,8 @@
       <van-col span="4"></van-col>
     </van-row>
     <van-row v-if="falg"> 1111111</van-row>
-    <van-row v-else
-      ><van-tabs v-model="active" swipeable>
+    <van-row v-else>
+      <van-tabs v-model="active" swipeable>
         <van-tab title="视频"
           ><van-search
             v-model="value"
@@ -31,8 +31,8 @@
         <van-tab title="生活">内容 3</van-tab>
         <van-tab title="舞蹈">内容 5</van-tab>
         <van-tab title="混剪">内容 3</van-tab>
-      </van-tabs></van-row
-    >
+      </van-tabs>
+    </van-row>
   </div>
 </template>
 
@@ -85,4 +85,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
+#nav_gd {
+  background: pink;
+}
 </style>

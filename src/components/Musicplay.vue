@@ -27,24 +27,23 @@ export default {
   //方法集合
   methods: {
     getmusicUrl() {
-      console.log(this.id, "id");
-
+      //   console.log(this.id, "id");
       if (this.id) {
-        this.$axios.get("api/song/url?id=" + this.id).then((res) => {
+        this.$request.get("/song/url?id=" + this.id).then((res) => {
           this.musicList = {
             artist: this.$route.query.singname,
             title: this.$route.query.songname,
             src: res.data.data[0].url,
           };
-          this.$axios.get("api/song/detail?ids=" + this.id).then((res1) => {
+          this.$request.get("/song/detail?ids=" + this.id).then((res1) => {
             this.musicList.pic = res1.data.songs[0].al.picUrl;
-            console.log(res1, "456798");
-            this.$axios.get("api/lyric?id=" + this.id).then((res2) => {
+            // console.log(res1, "456798");
+            this.$request.get("/lyric?id=" + this.id).then((res2) => {
               this.musicList.lrc = res2.data.lrc.lyric;
-              console.log(res2, "111111111");
+              //   console.log(res2, "111111111");
             });
           });
-          console.log(res.data, this.musicList, "13");
+          //   console.log(res.data, this.musicList, "13");
         });
       }
     },
