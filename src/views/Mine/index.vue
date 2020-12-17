@@ -129,12 +129,12 @@ export default {
       })
         .then(() => {
           //点击确定
-          localStorage.removeItem("userId");
-          localStorage.removeItem("cookie");
+          localStorage.clear();
           Toast.success({
             message: "您已成功退出登录！",
             duration: 2000,
           });
+          this.$request.get("/logout");
           this.$router.push("/login");
         })
         .catch(() => {
@@ -171,7 +171,8 @@ export default {
           id,
         },
       });
-      console.log(id);
+      //   console.log(id);
+      // console.log(id);
     },
     delList(index) {
       //数据赋值
@@ -214,7 +215,7 @@ export default {
     },
     getUser() {
       //获取用户头像，用户名，用户等级
-      this.$axios.get(`api/user/detail?uid=${this.userId}`).then((res) => {
+      this.$request.get(`/user/detail?uid=${this.userId}`).then((res) => {
         if (res.data.code === 200) {
           //   console.log(res);
           this.avatarImg = res.data.profile.avatarUrl;
@@ -225,9 +226,9 @@ export default {
     },
     getPlayList() {
       //获取用户歌单
-      this.$axios.get(`api/user/playlist?uid=${this.userId}`).then((res) => {
+      this.$request.get(`/user/playlist?uid=${this.userId}`).then((res) => {
         if (res.status === 200) {
-          console.log(res.data.playlist);
+          //   console.log(res.data.playlist);
           let playlist = res.data.playlist;
           for (let i = 0; i < playlist.length; i++) {
             let ListName = playlist[i].name; //歌单名称
@@ -241,7 +242,7 @@ export default {
               ListNum,
             });
           }
-          console.log(this.Lists);
+          //   console.log(this.Lists);
         }
       });
     },
