@@ -8,7 +8,13 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
-    <van-image v-model="img" width="100%" height="10rem" fit="contain" :src="img" />
+    <van-image
+      v-model="img"
+      width="100%"
+      height="10rem"
+      fit="contain"
+      :src="img"
+    />
     <van-cell-group>
       <van-cell title="歌曲" value="专辑" />
       <van-cell v-for="item in songs" :key="item.name">
@@ -17,7 +23,7 @@
           :value="item.al.name"
           :label="item.alia[0]"
           :icon="item.al.picUrl"
-          @click="goMusicPlayer(item.id)"
+          @click="goMusicPlayer(item.id, item.name, item.al.name)"
         />
       </van-cell>
     </van-cell-group>
@@ -36,9 +42,9 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    goMusicPlayer(id) {
+    goMusicPlayer(id, name, val) {
       //跳转到播放页
-      this.$router.push({ path: "/musicplayer", query: { id } });
+      this.$router.push({ path: "/musicplayer", query: { id, name, val } });
     },
     onClickLeft() {
       Toast("返回");
@@ -51,7 +57,7 @@ export default {
       var id = this.$route.query.id;
       this.img = this.$route.query.url;
       this.name = this.$route.query.title;
-      this.$axios.get(`/api/artist/top/song?id=${id}`).then((res) => {
+      this.$request.get(`/artist/songs?id=${id}`).then((res) => {
         this.songs = res.data.songs;
         // console.log(this.songs);
       });

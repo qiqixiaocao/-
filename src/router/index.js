@@ -4,12 +4,13 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+    // mode: "history",
     routes: [{
             path: "/",
             redirect: "/index",
             meta: {
-                showFooter: true,
-            },
+                showFooter: true
+            }
         },
         {
             //首页（发现页）
@@ -17,8 +18,9 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Find"),
             meta: {
-                showFooter: true,
-            },
+                showFooter: true
+            }
+
         },
         {
             //登录
@@ -44,17 +46,17 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Userinfo"),
             meta: {
-                showFooter: false,
-            },
+                showFooter: false
+            }
         },
         {
             //歌手列表
             path: "/singer",
             component: () =>
-                import ("../views/Singer/index"),
+                import ("../views/Singer"),
             meta: {
-                showFooter: true,
-            },
+                showFooter: true
+            }
         },
         {
             //歌手详情
@@ -71,8 +73,9 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/Mine"),
             meta: {
-                showFooter: true,
-            },
+                showFooter: true
+            }
+
         },
         {
             //歌单
@@ -98,8 +101,9 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/MusicPlayer"),
             meta: {
-                showFooter: false,
-            },
+                showFooter: false
+            }
+
         },
         {
             //MV播放
@@ -107,8 +111,8 @@ const router = new VueRouter({
             component: () =>
                 import ("../views/MVPlayer"),
             meta: {
-                showFooter: false,
-            },
+                showFooter: false
+            }
         },
         {
             //云村
@@ -119,6 +123,16 @@ const router = new VueRouter({
                 showFooter: true,
             },
         },
+        {
+            //云村跳热门歌曲
+            path: "/hotsong",
+            component: () =>
+                import ('../views/CloudVillage/hotsong'),
+            meta: {
+                showFooter: false
+            }
+        },
+
     ],
     linkActiveClass: "active",
 });

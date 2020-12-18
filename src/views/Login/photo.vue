@@ -1,5 +1,5 @@
 <template>
-  <div class="photo" style="margin-top: 50px">
+  <div class="photo" style="margin-top: 1rem">
     <van-cell-group>
       <van-field
         required
@@ -23,7 +23,7 @@
         </template>
       </van-field>
       <van-field v-model="password" type="password" label="密码" />
-      <van-row type="flex" justify="center" style="margin-top:10px">
+      <van-row type="flex" justify="center" style="margin-top:0.2rem">
         <van-col span="6">
           <van-button
             round
@@ -119,7 +119,7 @@ export default {
 .tiao {
   display: block;
   text-align: center;
-  margin-bottom: 8px;
-  margin-top: 8px;
+  margin-bottom: 0.04rem;
+  margin-top: 0.04rem;
 }
 </style>

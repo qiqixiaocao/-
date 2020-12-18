@@ -55,10 +55,10 @@ export default {
     getSongs() {
       const id = this.$route.query && this.$route.query.id;
       //   console.log(id);
-      this.$axios.get(`api/playlist/detail?id=${id}`).then((res) => {
-        console.log(res);
+      this.$request.get(`/playlist/detail?id=${id}`).then((res) => {
+        // console.log(res);
         this.Songs = res.data.playlist.tracks;
-        console.log(this.Songs);
+        // console.log(this.Songs);
       });
     },
 
@@ -75,15 +75,15 @@ export default {
     },
     getList() {
       if (this.$route.query.id) {
-        this.$axios.get("api/playlist/detail?id=" + this.$route.query.id).then((res) => {
+        this.$request.get("/playlist/detail?id=" + this.$route.query.id).then((res) => {
           this.title = res.data.playlist.name;
           // this.list = res.data.playlist.tracks;
           this.imageURL = res.data.playlist.coverImgUrl;
           this.desc = res.data.playlist.creator.nickname + "　>";
           // console.log(res.data.playlist);
           for (let i in res.data.playlist.trackIds) {
-            this.$axios
-              .get("api/song/detail?ids=" + res.data.playlist.trackIds[i].id)
+            this.$request
+              .get("/song/detail?ids=" + res.data.playlist.trackIds[i].id)
               .then((res) => {
                 this.list.push(res.data.songs[0]);
               });
