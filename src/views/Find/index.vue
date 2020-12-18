@@ -126,7 +126,7 @@
           :border="false"
           style="padding: 0; height: 300px"
         >
-          <van-grid-item v-for="item in tuipics" :key="item.id">
+          <van-grid-item v-for="item in tuipics" :key="item.id" @click="goDtail(item.id)">
             <van-image radius="15" :src="item.picUrl" />
             <p
               v-text="item.name"
@@ -280,6 +280,7 @@
 import Vue from "vue";
 import { Lazyload } from "vant";
 import elementUi from "element-ui";
+import loginVue from "../../../../../三阶段/vue1/myapp/src/views/login.vue";
 Vue.use(Lazyload);
 Vue.use(elementUi);
 export default {
@@ -303,7 +304,10 @@ export default {
     showPopup() {
       this.show = true;
     },
-
+    goDtail(id) {
+      // console.log(id, "goDtail");
+      this.$router.push({ path: "musiclist", query: { id } });
+    },
     //各个接口
     getApp() {
       //轮播图接口
