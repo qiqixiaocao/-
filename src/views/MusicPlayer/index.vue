@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <div class="musicplayer">
     <div style="padding: 10px 0">
@@ -11,44 +10,27 @@
         @click-right="onClickRight"
       />
     </div>
-    <Aplayer :id="id"></Aplayer>
-    <van-overlay :show="show" @click="show = false">
-      <div class="wrapper">
-        <div class="block"><img :src="Img" /></div>
-      </div>
-    </van-overlay>
+    <aplayer :audio="audio" :lrcType="1" />
   </div>
 </template>
 
 <script>
-//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
-
-import Aplayer from "../../components/Musicplay.vue";
-import Img from "../../assets/img/2.jpg";
 export default {
-  //import引入的组件需要注入到对象中才能使用
-  components: {
-    Aplayer,
-  },
+  components: {},
 
   data() {
-    //这里存放数据
     return {
-      msg: "text",
-      musicList: {},
       Songtitle: "",
-      Songlyric: "",
       id: "",
-      show: true,
-      Img: Img,
+      audio: {
+        name: "",
+        artist: "",
+        url: "",
+        cover: "",
+        lrc: "",
+      },
     };
   },
-  //监听属性 类似于data概念
-  computed: {},
-  //监控data中的数据变化
-  watch: {},
-  //方法集合
   methods: {
     onClickLeft() {
       this.$router.go(-1);
@@ -58,24 +40,25 @@ export default {
     },
     getmusicUrl() {
       this.$request.get("/song/url?id=" + this.id).then((res) => {
-        this.Songtitle = this.$route.query.songname;
-        res;
+        this.audio.url = res.data.data[0].url;
+        this.Songtitle = this.$route.query.name;
+        this.audio.name = this.$route.query.name;
+        this.$request.get("/lyric?id=" + this.id).then((res) => {
+          this.audio.lrc = res.data.lrc.lyric;
+        });
       });
     },
   },
-  //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.id = this.$route.query.id;
   },
-  //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this.getmusicUrl();
     this.Songtitle = this.$route.query.songname;
   },
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style scoped>
+<style>
 .title {
   width: 100%;
   height: 70px;

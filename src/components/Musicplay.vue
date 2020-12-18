@@ -1,18 +1,7 @@
 <!--  -->
 <template>
   <div class="play">
-    <aplayer
-      autoplay
-      :music="{
-        title: musicList.title,
-        artist: musicList.artist,
-        src: musicList.src,
-        pic: musicList.pic,
-        lrc: musicList.lrc,
-      }"
-      :showLrc="flag"
-    >
-    </aplayer>
+    <aplayer :audio="audio" :lrcType="1" />
   </div>
 </template>
 
@@ -24,12 +13,23 @@ export default {
   //import引入的组件需要注入到对象中才能使用
   components: { aplayer },
   props: {
+    music: Object,
     id: String,
+  },
+  async mounted() {
+    //async   await 异步加载，先加载出player再使用
+    let aplayer = await this.$refs.player.control;
+    aplayer.play();
   },
   data() {
     return {
-      musicList: {},
-      flag: true,
+      audio: {
+        name: "",
+        artist: "",
+        url: "",
+        cover: "",
+        lrc: "",
+      },
     };
   },
   //监听属性 类似于data概念
@@ -39,25 +39,14 @@ export default {
   //方法集合
   methods: {
     getmusicUrl() {
-      //   console.log(this.id, "id");
-      if (this.id) {
-        this.$request.get("/song/url?id=" + this.id).then((res) => {
-          this.musicList = {
-            artist: this.$route.query.singname,
-            title: this.$route.query.songname,
-            src: res.data.data[0].url,
-          };
-          this.$request.get("/song/detail?ids=" + this.id).then((res1) => {
-            this.musicList.pic = res1.data.songs[0].al.picUrl;
-            // console.log(res1, "456798");
-            this.$request.get("/lyric?id=" + this.id).then((res2) => {
-              this.musicList.lrc = res2.data.lrc.lyric;
-              //   console.log(res2, "111111111");
-            });
-          });
-          //   console.log(this.musicList);
+      this.$request.get("/song/url?id=" + this.id).then((res) => {
+        this.audio.url = res.data.data[0].url;
+        this.Songtitle = this.$route.query.name;
+        this.audio.name = this.$route.query.name;
+        this.$request.get("/lyric?id=" + this.id).then((res) => {
+          this.audio.lrc = res.data.lrc.lyric;
         });
-      }
+      });
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）

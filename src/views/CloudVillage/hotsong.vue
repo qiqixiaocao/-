@@ -8,7 +8,6 @@
           v-model="value"
           placeholder="请输入搜索关键词"
           @input.native="searchinput"
-          @blur="blurevent"
       /></van-col>
     </van-row>
     <br />
@@ -32,7 +31,9 @@
     </div>
     <div class="suslist">
       <ul>
-        <li v-for="(item, index2) in drgsuplsl" :key="index2">{{ item.name }}</li>
+        <li v-for="(item, index2) in drgsuplsl" :key="index2">
+          {{ item.keyword }}
+        </li>
       </ul>
     </div>
   </div>
@@ -59,7 +60,7 @@ export default {
         "推歌精选",
       ],
       message: "",
-      drgsuplsl: [],
+      drgsuplsl: "",
     };
   },
   computed: {},
@@ -73,31 +74,26 @@ export default {
     },
     searchinput() {
       if (this.value) {
-        let searchvalue = this.value;
-        this.$request.get("/cloudsearch?keywords=" + searchvalue).then((res) => {
-          //   console.log(res, "ssssssearch");
-          let message = res.data.result.songs;
-          this.drgsuplsl = message.slice("0", "10");
-          //   console.log(message, this.drgsuplsl, "000000000");
-        });
+        this.$request
+          .get(`/search/suggest?keywords= ${this.value}&type=mobile`)
+          .then((res) => {
+            //   console.log(res, "ssssssearch");
+            // console.log(res);
+            this.drgsuplsl = res.data.result.allMatch;
+            // this.drgsuplsl = message.slice("0", "10");
+            // //   console.log(message, this.drgsuplsl, "000000000");
+          });
       } else {
-        this.drgsuplsl = [];
+        this.drgsuplsl = "";
       }
     },
-    
-
-  
-  
-  
-  
-  
-},
+  },
   created() {
     this.$request.get("/search/hot").then((res) => {
-      console.log(res, "hot11111");
-      console.log(res.data.result.hots);
+      //   console.log(res, "hot11111");
+      //   console.log(res.data.result.hots);
       this.hotlist = res.data.result.hots;
-      console.log(this.hotlist, "222222");
+      //   console.log(this.hotlist, "222222");
     });
     this.searchinput();
   },
@@ -178,14 +174,14 @@ p {
   left: 20px;
   z-index: 999;
   border-radius: 4px;
-  
-  box-shadow:0 10px 10px 0  #999 ;
+
+  box-shadow: 0 10px 10px 0 #999;
 }
 .suslist ul li {
   border-bottom: 1px solid #999;
-   line-height: 30px;
+  line-height: 30px;
   width: 310px;
   height: 30px;
-  background:white;
+  background: white;
 }
 </style>
