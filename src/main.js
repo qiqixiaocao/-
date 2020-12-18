@@ -9,8 +9,8 @@ import "mint-ui/lib/style.css";
 import store from "./store";
 import axios from "axios";
 import request from "./util/request";
-import elementui from "element-ui";
 import rem from "./util/rem";
+import elementui from "element-ui";
 Vue.use(rem);
 Vue.use(elementui);
 Vue.use(Vant);
@@ -21,7 +21,9 @@ Vue.prototype.$request = request;
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  store,
-  render: (h) => h(App),
+    rem,
+    router,
+    store,
+    render: (h) => h(App),
 }).$mount("#app");
+
