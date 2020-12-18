@@ -9,6 +9,7 @@ import 'mint-ui/lib/style.css';
 import store from './store';
 import axios from 'axios';
 import request from "./util/request";
+import rem from "./util/rem";
 import elementui from "element-ui";
 Vue.use(elementui);
 Vue.use(Vant);
@@ -19,6 +20,7 @@ Vue.prototype.$request = request;
 Vue.config.productionTip = false;
 
 new Vue({
+    rem,
     router,
     store,
     render: (h) => h(App),
