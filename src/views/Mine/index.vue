@@ -282,6 +282,7 @@ export default {
 .user {
   padding-top: 1rem;
   background: rgb(245, 245, 245);
+  text-align: center;
 }
 .usermessage {
   display: flex;
@@ -348,6 +349,7 @@ export default {
 }
 .login {
   display: block;
+  font-size: 0.3rem;
   margin: 0 auto;
   margin-top: 0.6rem;
 }
@@ -402,5 +404,6 @@ export default {
 .loginOut {
   text-align: center;
   padding-top: 0.6rem;
+  font-size: 0.3rem;
 }
 </style>

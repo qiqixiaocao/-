@@ -59,6 +59,7 @@ export default {
     getmusicUrl() {
       this.$request.get("/song/url?id=" + this.id).then((res) => {
         this.Songtitle = this.$route.query.songname;
+        res;
       });
     },
   },
