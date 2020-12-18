@@ -86,15 +86,15 @@ const router = new VueRouter({
                 showFooter: false,
             },
         },
-        {
-            //歌曲播放
-            path: "/musicplayer/:id",
-            component: () =>
-                import ("../views/MusicPlayer"),
-            meta: {
-                showFooter: false,
-            },
-        },
+        // {
+        //     //歌曲播放
+        //     path: "/musicplayer/:id",
+        //     component: () =>
+        //         import ("../views/MusicPlayer"),
+        //     meta: {
+        //         showFooter: false,
+        //     },
+        // },
         {
             //歌曲播放
             path: "/musicplayer",

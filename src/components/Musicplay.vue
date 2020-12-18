@@ -1,23 +1,20 @@
 <!--  -->
 <template>
   <div class="play">
-    <aplayer autoplay mutex :music="musicList" onPlay> </aplayer>
+    <!-- <aplayer autoplay mutex :music="musicList" onPlay> </aplayer> -->
+    <aplayer :audio="audio" :lrcType="1" />
   </div>
 </template>
 
 <script>
-//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-import aplayer from "vue-aplayer";
-
 export default {
-  //import引入的组件需要注入到对象中才能使用
-  components: { aplayer },
+  components: {},
   props: {
     id: String,
   },
   data() {
     return {
-      musicList: {},
+      // audio: {},
     };
   },
   //监听属性 类似于data概念
@@ -27,25 +24,25 @@ export default {
   //方法集合
   methods: {
     getmusicUrl() {
-      //   console.log(this.id, "id");
-      if (this.id) {
-        this.$request.get("/song/url?id=" + this.id).then((res) => {
-          this.musicList = {
-            artist: this.$route.query.singname,
-            title: this.$route.query.songname,
-            src: res.data.data[0].url,
-          };
-          this.$request.get("/song/detail?ids=" + this.id).then((res1) => {
-            this.musicList.pic = res1.data.songs[0].al.picUrl;
-            // console.log(res1, "456798");
-            this.$request.get("/lyric?id=" + this.id).then((res2) => {
-              this.musicList.lrc = res2.data.lrc.lyric;
-              //   console.log(res2, "111111111");
-            });
-          });
-          //   console.log(res.data, this.musicList, "13");
-        });
-      }
+      console.log(this.id, "id");
+      // if (this.id) {
+      //   this.$request.get(`/song/url?id=${this.id}`).then((res) => {
+      //     this.audio = {
+      //       artist: this.$route.query.name,
+      //       name: this.$route.query.val,
+      //       url: res.data.data[0].url,
+      //     };
+      //     this.$request.get(`/song/detail?ids=${this.id}`).then((res1) => {
+      //       this.musicList.cover = res1.data.songs[0].al.picUrl;
+      //       // console.log(res1, "456798");
+      //       this.$request.get(`/lyric?id=${this.id}`).then((res2) => {
+      //         this.musicList.lrc = res2.data.lrc.lyric;
+      //         //   console.log(res2, "111111111");
+      //       });
+      //     });
+      //     //   console.log(res.data, this.musicList, "13");
+      //   });
+      // }
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）

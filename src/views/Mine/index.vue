@@ -59,7 +59,7 @@
         position="bottom"
         :style="{ height: '30%' }"
       >
-        <van-form style="margin-top: 30px">
+        <van-form style="margin-top: 0.6rem">
           <van-field
             autocomplete="off"
             v-model="ListName"
@@ -68,7 +68,7 @@
             placeholder="请输入歌单名"
             :rules="[{ required: true, message: '请填写歌单名' }]"
           />
-          <div style="margin: 16px">
+          <div style="margin: 0.32rem">
             <van-button
               round
               block
@@ -275,89 +275,95 @@ export default {
 <style scoped>
 .mine {
   width: 100%;
-  min-height: 580px;
+  min-height: 100%;
   background-color: rgb(245, 245, 245);
-  overflow: hidden;
-  padding-bottom: 80px;
+  padding-bottom: 1.2rem;
 }
 .user {
-  padding-top: 50px;
+  padding-top: 1rem;
   background: rgb(245, 245, 245);
+  text-align: center;
 }
 .usermessage {
   display: flex;
   width: 100%;
   justify-content: space-around;
   align-items: center;
-  /* margin-top: 50px; */
 }
 .avatar {
-  width: 50px;
-  height: 50px;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 0.1rem solid #fff;
 }
 .usermessage span {
   display: block;
-  width: 40px;
-  height: 20px;
+  width: 0.7rem;
+  height: 0.5rem;
   text-align: center;
-  line-height: 20px;
-  border-radius: 10px;
+  font-size: 0.3rem;
+  line-height: 0.5rem;
+  border-radius: 0.1rem;
   background: #fff;
+}
+.usermessage h3 {
+  font-size: 0.5rem;
 }
 .lists-cover {
   width: 90%;
   background: #fff;
   margin: 0 auto;
-  border-radius: 15px;
-  padding-top: 20px;
-  margin-top: 20px;
+  border-radius: 0.3rem;
+  padding-top: 0.4rem;
+  margin-top: 0.4rem;
   overflow: hidden;
 }
 .lists {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 80px;
+  height: 1.6rem;
+  margin-bottom: 0.4rem;
 }
 .lists-img {
   display: block;
   float: left;
-  width: 60px;
-  height: 60px;
-  border-radius: 15px;
-  margin-left: 20px;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.3rem;
+  margin-left: 0.4rem;
 }
 .lists-title {
   float: left;
-  height: 60px;
-  margin-left: 10px;
+  height: 1.2rem;
+  margin-left: 0.2rem;
 }
 .lists-title .span1 {
   display: block;
-  width: 200px;
+  font-size: 0.36rem;
+  width: 4rem;
 }
 .lists-title .span2 {
-  font-size: 14px;
+  font-size: 0.28rem;
   color: rgb(140, 140, 140);
 }
 .login {
   display: block;
+  font-size: 0.3rem;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 0.6rem;
 }
 .nav-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   width: 90%;
-  height: 150px;
+  height: 3rem;
   background: #fff;
   margin: 0 auto;
-  border-radius: 15px;
-  padding-top: 20px;
-  margin-top: 20px;
+  border-radius: 0.3rem;
+  padding-top: 0.4rem;
+  margin-top: 0.4rem;
 }
 .nav-box li {
   display: flex;
@@ -367,34 +373,37 @@ export default {
   text-align: center;
 }
 .nav-box span {
-  font-size: 18px;
+  font-size: 0.36rem;
 }
 .nav-box .iconfont {
-  font-size: 30px;
+  font-size: 0.6rem;
   color: red;
 }
 .lists-count {
-  margin-left: 20px;
+  margin-left: 0.5rem;
+  font-size: 0.4rem;
 }
 .lists .icon-gengduo {
   float: right;
-  font-size: 22px;
+  font-size: 0.44rem;
 }
 .lists-header {
-  padding-right: 27px;
+  padding-right: 0.11rem;
+  margin-bottom: 0.2rem;
 }
 .lists-header .icon-gengduo {
   float: right;
-  font-size: 22px;
+  font-size: 0.44rem;
 }
 .lists-header .icon-jia {
   float: right;
-  font-size: 16px;
-  margin-top: 4px;
-  margin-right: 10px;
+  font-size: 0.32rem;
+  margin-top: 0.08rem;
+  margin-right: 0.2rem;
 }
 .loginOut {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 0.6rem;
+  font-size: 0.3rem;
 }
 </style>

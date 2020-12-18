@@ -41,7 +41,7 @@ export default {
     getmusicUrl() {
       this.$request.get("/song/url?id=" + this.id).then((res) => {
         this.audio.url = res.data.data[0].url;
-        console.log(res.data.data[0].url);
+
         this.Songtitle = this.$route.query.name;
         this.audio.name = this.$route.query.name;
         this.$request.get("/lyric?id=" + this.id).then((res) => {
@@ -57,9 +57,16 @@ export default {
     this.getmusicUrl();
     this.Songtitle = this.$route.query.songname;
   },
+  watch: {
+    id: function(newVal, oldVal) {
+      // TO DO
+      console.log("newVal:", newVal);
+      console.log("oldVal:", oldVal);
+    },
+  },
 };
 </script>
-<style>
+<style scoped>
 .title {
   width: 100%;
   height: 70px;

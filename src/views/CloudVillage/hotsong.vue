@@ -8,6 +8,7 @@
           v-model="value"
           placeholder="请输入搜索关键词"
           @input.native="searchinput"
+          @blur="blurevent"
       /></van-col>
     </van-row>
     <br />
@@ -83,7 +84,14 @@ export default {
         this.drgsuplsl = [];
       }
     },
-  },
+    
+
+  
+  
+  
+  
+  
+},
   created() {
     this.$request.get("/search/hot").then((res) => {
       console.log(res, "hot11111");
@@ -169,9 +177,15 @@ p {
   top: 50px;
   left: 20px;
   z-index: 999;
+  border-radius: 4px;
+  
+  box-shadow:0 10px 10px 0  #999 ;
 }
-.sunlist ul li {
-  width: 85px;
-  background: green;
+.suslist ul li {
+  border-bottom: 1px solid #999;
+   line-height: 30px;
+  width: 310px;
+  height: 30px;
+  background:white;
 }
 </style>
