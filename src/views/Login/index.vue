@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="cover">
-    <div class="login">
+    <div class="main">
       <van-field
         required
         label="手机号"
@@ -11,7 +11,7 @@
       />
       <van-field
         ref="pwd"
-        style="margin-top=10px"
+        style="margin-top: 0.3rem; position: relative"
         required
         v-model="password"
         type="password"
@@ -19,9 +19,8 @@
         placeholder="请输入密码"
       />
       <i class="iconfont icon-llshakeabouticon" @click="showPwd"></i>
-    </div>
-    <div class="btns">
       <van-button
+        style="margin-top: 0.3rem"
         round
         plain
         type="danger"
@@ -30,7 +29,13 @@
         :disabled="this.tel && this.password ? false : true"
         >登录</van-button
       >
-      <van-button round plain type="danger" @click="tofind" block style="margin-top: 15px"
+      <van-button
+        round
+        plain
+        type="danger"
+        @click="tofind"
+        block
+        style="margin-top: 0.3rem"
         >游客登录</van-button
       >
     </div>
@@ -54,7 +59,6 @@ export default {
       show: false,
       phone: "",
       numtxt: "",
-      // value: "",
       tel: "",
       password: "",
     };
@@ -112,36 +116,30 @@ export default {
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style>
+<style scoped>
 .cover {
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
-  height: 665px;
   background: url("../../assets/img/wangyi-cover.jpeg") center/cover;
 }
-.login {
-  position: absolute;
-  left: 10%;
-  bottom: 35%;
-}
-.btns {
-  position: absolute;
-  width: 306px;
-  left: 10%;
-  bottom: 16%;
+.main {
+  position: fixed;
+  left: 5%;
+  bottom: 20%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: space-between;
 }
 .icon-llshakeabouticon {
   position: absolute;
-  font-size: 20px;
-  right: 2%;
-  bottom: 11%;
-}
-.van-field__label {
-  width: 100px;
-  font-size: 20px;
-  margin-right: 0;
-}
-.van-field:nth-of-type(1) {
-  margin-bottom: 20px;
+  right: 3%;
+  top: 32%;
+  font-size: 0.4rem;
 }
 </style>

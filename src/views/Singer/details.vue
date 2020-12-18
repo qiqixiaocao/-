@@ -8,7 +8,7 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
-    <van-image v-model="img" width="100%" height="10rem" fit="contain" :src="img" />
+    <van-image v-model="img" width="100%" height="4rem" fit="contain" :src="img" />
     <van-cell-group>
       <van-cell title="歌曲" value="专辑" />
       <van-cell v-for="item in songs" :key="item.name">
