@@ -84,17 +84,9 @@
       </van-swipe-item>
     </van-swipe>
     <!-- 每日推荐图标 -->
-    <div
-      style="display: flex; text-align: center; background: #fff; overflow-x: scroll"
-    >
-      <dl
-        style="width: 15%; margin: 0.2rem"
-        v-for="item in icons"
-        :key="item.id"
-      >
-        <dt
-          style="background: rgb(253, 120, 119); border-radius: 50%; margin: 0.2rem 0"
-        >
+    <div style="display: flex; text-align: center; background: #fff; overflow-x: scroll">
+      <dl style="width: 15%; margin: 0.2rem" v-for="item in icons" :key="item.id">
+        <dt style="background: rgb(253, 120, 119); border-radius: 50%; margin: 0.2rem 0">
           <img :src="item.iconUrl" alt="" style="width: 80%; height: 80%" />
         </dt>
         <dt
@@ -151,7 +143,12 @@
 
     <!-- 私人定制  精选华语金曲 select-->
     <div
-      style="background-color: #fff; border-radius: 0.4rem; padding: 0.2rem 0; margin: 0.2rem 0"
+      style="
+        background-color: #fff;
+        border-radius: 0.4rem;
+        padding: 0.2rem 0;
+        margin: 0.2rem 0;
+      "
     >
       <p style="color: #aaa; margin: 0 0.3rem">私人定制</p>
       <div style="height: 0.9rem; margin: 0 0.3rem">
@@ -180,7 +177,12 @@
 
     <!-- 精选音乐视频 -->
     <div
-      style="background-color: #fff; border-radius: 0.4rem; padding: 0.2rem 0; margin: 0.2rem 0"
+      style="
+        background-color: #fff;
+        border-radius: 0.4rem;
+        padding: 0.2rem 0;
+        margin: 0.2rem 0;
+      "
     >
       <div style="height: 0.9rem; margin: 0 0.3rem">
         <h2 style="float: left">精选音乐视频</h2>
@@ -229,7 +231,12 @@
 
     <!-- 排行榜 -->
     <div
-      style="background-color: #fff; border-radius: 0.4rem; padding: 0.2rem 0; margin: 0.2rem 0"
+      style="
+        background-color: #fff;
+        border-radius: 0.4rem;
+        padding: 0.2rem 0;
+        margin: 0.2rem 0;
+      "
     >
       <div style="height: 0.9rem; margin: 0 0.3rem">
         <h2 style="float: left; width: 3rem">排行榜</h2>
@@ -251,17 +258,17 @@
           <van-cell
             v-for="item in rowforpic"
             :key="item.id"
-            style="padding: 0;width:6.5rem;height:1.1rem;line-height:1.1rem;"
+            style="padding: 0; width: 6.5rem; height: 1.1rem; line-height: 1.1rem"
           >
             <!-- 使用 title 插槽来自定义标题 -->
             <template #title>
-              <span class="custom-title" style="float: left;">
+              <span class="custom-title" style="float: left">
                 <img :src="item.picUrl" alt="" />&nbsp;
               </span>
-              <p style="padding: 0 0.2rem 0 0; width: 6rem;">
+              <p style="padding: 0 0.2rem 0 0; width: 6rem">
                 <span style="font-size: 0.36rem" v-text="item.name"></span>
                 <span
-                  style="color:#aaa; padding-left: 0.2rem;"
+                  style="color: #aaa; padding-left: 0.2rem"
                   v-text="item.song.album.artists[0].name"
                 ></span>
                 <span style="color: green; float: right">新</span>
@@ -287,7 +294,6 @@
 import Vue from "vue";
 import { Lazyload } from "vant";
 import elementUi from "element-ui";
-import loginVue from "../../../../../三阶段/vue1/myapp/src/views/login.vue";
 Vue.use(Lazyload);
 Vue.use(elementUi);
 export default {
