@@ -12,14 +12,14 @@ import request from "./util/request";
 import rem from "./util/rem";
 import APlayer from '@moefe/vue-aplayer';
 import elementui from "element-ui";
-Vue.use(APlayer, {
-    defaultCover: 'https://github.com/u3u.png',
-    productionTip: true,
-});
 Vue.use(rem);
 Vue.use(elementui);
 Vue.use(Vant);
 Vue.use(MintUI);
+Vue.use(APlayer, {
+    defaultCover: 'https://github.com/u3u.png',
+    productionTip: true,
+});
 Vue.prototype.pinyin = pinyin;
 Vue.prototype.$axios = axios;
 Vue.prototype.$request = request;

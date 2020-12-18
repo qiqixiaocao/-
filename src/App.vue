@@ -5,7 +5,9 @@
         <router-view></router-view>
       </transition>
     </main>
+
     <footer>
+      <!-- <Aplayer style="position:fixed;bottom:40px"></Aplayer> -->
       <Footer v-show="$route.meta.showFooter"></Footer>
     </footer>
   </div>
@@ -13,10 +15,12 @@
 
 <script>
 import Footer from "./components/content/Footer";
+// import Aplayer from "./views/MusicPlayer/index";
 export default {
   name: "App",
   components: {
     Footer,
+    // Aplayer,
   },
 };
 </script>

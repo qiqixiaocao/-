@@ -2,7 +2,7 @@
 <template>
   <div class="singer">
     <div class="city_body">
-      <div class="city_list" style="padding-bottom: 40px">
+      <div class="city_list" style="padding-bottom: 0.4rem">
         <mt-index-list>
           <mt-index-section
             :index="items.title"

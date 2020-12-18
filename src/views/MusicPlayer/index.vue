@@ -56,6 +56,13 @@ export default {
     this.getmusicUrl();
     this.Songtitle = this.$route.query.songname;
   },
+  watch: {
+    id: function (newVal, oldVal) {
+      // TO DO
+      console.log("newVal:", newVal);
+      console.log("oldVal:", oldVal);
+    },
+  },
 };
 </script>
 <style>

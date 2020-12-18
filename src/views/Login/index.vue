@@ -97,7 +97,12 @@ export default {
           }
           window.localStorage.setItem("userId", res.data.profile.userId);
           window.localStorage.setItem("cookie", res.data.cookie);
-          //   console.log(res.data.profile.userId, "22222");
+          localStorage.setItem(
+            "username",
+            JSON.stringify(res.data.profile.nickname)
+          );
+
+          console.log(res.data.profile.userId, "22222");
         });
       // console.log(this.tel,"111111");
     },

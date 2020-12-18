@@ -22,7 +22,9 @@
             <p>{{ item.name }}</p>
             <p>{{ item.ar[0].name + "－－" + item.al.name }}</p>
           </van-col>
-          <van-col span="2"><span class="iconfont icon-gengduo"></span></van-col>
+          <van-col span="2"
+            ><span class="iconfont icon-gengduo"></span
+          ></van-col>
         </van-row>
       </div>
     </div>
@@ -54,42 +56,47 @@ export default {
   methods: {
     getSongs() {
       const id = this.$route.query && this.$route.query.id;
-      //   console.log(id);
+      console.log(id);
       this.$request.get(`/playlist/detail?id=${id}`).then((res) => {
-        // console.log(res);
+        console.log(res);
         this.Songs = res.data.playlist.tracks;
-        // console.log(this.Songs);
+        console.log(this.Songs);
       });
     },
 
     Listen(id, num) {
-      // console.log(id, num);
+      console.log(id, num);
+      this.$store.state.id = id;
       this.$router.push({
         path: "/musicplayer",
         query: {
           id: id,
-          songname: this.list[num].name,
-          singname: this.list[num].ar[0].name,
+          name: this.list[num].name,
+          val: this.list[num].ar[0].name,
         },
       });
     },
     getList() {
       if (this.$route.query.id) {
-        this.$request.get("/playlist/detail?id=" + this.$route.query.id).then((res) => {
-          this.title = res.data.playlist.name;
-          // this.list = res.data.playlist.tracks;
-          this.imageURL = res.data.playlist.coverImgUrl;
-          this.desc = res.data.playlist.creator.nickname + "　>";
-          // console.log(res.data.playlist);
-          for (let i in res.data.playlist.trackIds) {
-            this.$request
-              .get("/song/detail?ids=" + res.data.playlist.trackIds[i].id)
-              .then((res) => {
-                this.list.push(res.data.songs[0]);
-              });
-          }
-          // console.log(this.list);
-        });
+        console.log(this.$route.query.id);
+        this.$request
+          .get("/playlist/detail?id=" + this.$route.query.id)
+          .then((res) => {
+            console.log(res);
+            this.title = res.data.playlist.name;
+            // this.list = res.data.playlist.tracks;
+            this.imageURL = res.data.playlist.coverImgUrl;
+            this.desc = res.data.playlist.creator.nickname + "　>";
+            console.log(res.data.playlist);
+            for (let i in res.data.playlist.trackIds) {
+              this.$request
+                .get("/song/detail?ids=" + res.data.playlist.trackIds[i].id)
+                .then((res) => {
+                  this.list.push(res.data.songs[0]);
+                });
+            }
+            console.log(this.list);
+          });
       }
     },
     onClickLeft() {
