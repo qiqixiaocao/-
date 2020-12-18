@@ -1,7 +1,18 @@
 <!--  -->
 <template>
   <div class="play">
-    <aplayer autoplay mutex :music="musicList" onPlay> </aplayer>
+    <aplayer
+      autoplay
+      :music="{
+        title: musicList.title,
+        artist: musicList.artist,
+        src: musicList.src,
+        pic: musicList.pic,
+        lrc: musicList.lrc,
+      }"
+      :showLrc="flag"
+    >
+    </aplayer>
   </div>
 </template>
 
@@ -18,6 +29,7 @@ export default {
   data() {
     return {
       musicList: {},
+      flag: true,
     };
   },
   //监听属性 类似于data概念
@@ -43,17 +55,17 @@ export default {
               //   console.log(res2, "111111111");
             });
           });
-          //   console.log(res.data, this.musicList, "13");
+          //   console.log(this.musicList);
         });
       }
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
+  created() {},
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
     this.getmusicUrl();
   },
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
