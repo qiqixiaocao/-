@@ -10,6 +10,8 @@ import store from './store';
 import axios from 'axios';
 import request from "./util/request";
 import elementui from "element-ui";
+import rem from "./util/rem";
+Vue.use(rem);
 Vue.use(elementui);
 Vue.use(Vant);
 Vue.use(MintUI);

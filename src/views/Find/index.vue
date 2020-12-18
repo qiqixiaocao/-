@@ -244,14 +244,14 @@
           <van-cell
             v-for="item in rowforpic"
             :key="item.id"
-            style="padding: 0;width:20rem;height:55px:line-height55px;"
+            style="padding: 0;width:0.2rem;height:55px:line-height55px;"
           >
             <!-- 使用 title 插槽来自定义标题 -->
             <template #title>
               <span class="custom-title" style="float: left">
                 <img :src="item.picUrl" alt="" />&nbsp;
               </span>
-              <p style="padding: 15px 10px 0 0; width: 20rem">
+              <p style="padding: 15px 10px 0 0; width: 0.2rem">
                 <span style="font-size: 18px" v-text="item.name"></span>
                 <span
                   style="color: #aaa; padding-left: 10px"
