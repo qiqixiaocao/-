@@ -129,7 +129,7 @@ export default {
       })
         .then(() => {
           //点击确定
-          localStorage.clear();
+          // localStorage.clear();
           Toast.success({
             message: "您已成功退出登录！",
             duration: 2000,

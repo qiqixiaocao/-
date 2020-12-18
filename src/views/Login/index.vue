@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="login" style="margin-top: 50px">
+  <div class="pt" style="margin-top: 50px">
     登录
 
     <van-cell-group>
@@ -19,11 +19,6 @@
         v-model="tel"
       />
       <van-field v-model="password" type="password" label="密码" />
-      <van-field center clearable label="短信验证码" placeholder="请输入短信验证码">
-        <template #button>
-          <van-button size="small" type="primary">发送验证码</van-button>
-        </template>
-      </van-field>
       <!-- <van-number-keyboard
         :show="show"
         theme="custom"
@@ -34,11 +29,15 @@
         @delete="onDelete"
         v-model="numtxt"
       /> -->
-      <van-row type="flex" justify="center">
+
+      <van-row type="flex" justify="center" style="margin-top:10px">
         <van-col span="6">
           <van-button round type="info" @click="tologin">一键登录</van-button>
         </van-col>
       </van-row>
+      <span class="tiao">
+        <router-link to="/photo">更多登陆方式</router-link>
+      </span>
     </van-cell-group>
   </div>
 </template>
@@ -72,6 +71,13 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    getcode() {
+      if (this.pass != "") {
+        this.flag = true;
+      } else {
+        this.flag = false;
+      }
+    },
     phonenumber() {
       let reg = /^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])\d{8}$/;
       if (reg.test(this.tel)) {
@@ -93,6 +99,10 @@ export default {
 
           window.localStorage.setItem("userId", res.data.profile.userId);
           window.localStorage.setItem("cookie", res.data.cookie);
+          localStorage.setItem(
+            "username",
+            JSON.stringify(res.data.profile.nickname)
+          );
 
           console.log(res.data.profile.userId, "22222");
         });
@@ -128,6 +138,11 @@ export default {
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang="scss" scoped>
-//@import url(); 引入公共css类
+<style scoped>
+.tiao {
+  display: block;
+  text-align: center;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
 </style>
