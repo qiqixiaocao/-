@@ -44,7 +44,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
               "
-              >神秘糖果店老板娘&nbsp;></span
+              >TOP队倾情制作></span
             >
             <van-icon
               name="scan"
@@ -265,11 +265,16 @@
     </div>
 
     <!-- 轮播图 -->
-    <van-swipe :autoplay="2000" style="height: 100%" :height="145">
-      <van-swipe-item v-for="(image, index) in images" :key="index">
-        <img :src="image.imageUrl" style="margin: 0 0.4rem" />
+    <van-swipe
+      :autoplay="3000"
+      indicator-color="witle"
+      style="width: 100%; height: 138px"
+    >
+      <van-swipe-item v-for="item in images" :key="item.id">
+        <img :src="item.imageUrl" style="width: 100%; height: 138px" />
       </van-swipe-item>
     </van-swipe>
+
     <!-- 每日推荐图标 -->
     <div style="display: flex; text-align: center; background: #fff">
       <dl style="width: 15%; margin: 0.08rem" v-for="item in icons" :key="item.id">
@@ -778,11 +783,6 @@ export default {
   margin-bottom: 1rem;
   background-color: rgb(245, 245, 245);
 }
-.van-swipe {
-  overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-}
 //====每日推荐
 #square {
   padding: 0;
@@ -826,11 +826,6 @@ export default {
   float: left;
   line-height: 1.08rem;
   padding-left: 0.2rem;
-}
-img {
-  width: 90%;
-  margin: 5%;
-  border-radius: 0.3rem;
 }
 #square {
   color: red;
