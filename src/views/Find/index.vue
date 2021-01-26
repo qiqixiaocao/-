@@ -276,7 +276,7 @@
     </van-swipe>
 
     <!-- 每日推荐图标 -->
-    <div style="display: flex; text-align: center; background: #fff">
+    <div style="display: flex; text-align: center; background: #fff; overflow: hidden">
       <dl style="width: 15%; margin: 0.08rem" v-for="item in icons" :key="item.id">
         <dt style="border-radius: 50%; margin: 0.1rem 0; overflow: hidden">
           <img
